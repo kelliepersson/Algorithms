@@ -54,13 +54,8 @@
 
 - (void)test_Prime_IfLimit_IsGreaterThan_2 {
 
-    // given
-    Prime *prime = [[Prime alloc] initWithLimit:30];
-
     // then
-    int arr[] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29};
-    int *arr2 = [prime sieve];
-    assertThat(@(arr2 == arr), isTrue());
+    assertThat([sut sieve], is(equalTo(@[@2, @3, @5, @7, @11, @13, @17, @19, @23, @29])));
 }
 
 

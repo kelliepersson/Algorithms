@@ -15,6 +15,9 @@
 		1ECCAAA51DDE77A7009B1104 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1ECCAAA41DDE77A7009B1104 /* Assets.xcassets */; };
 		1ECCAAA81DDE77A7009B1104 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ECCAAA61DDE77A7009B1104 /* LaunchScreen.storyboard */; };
 		1ECCAAB31DDE77A7009B1104 /* SieveOfEratosthenesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ECCAAB21DDE77A7009B1104 /* SieveOfEratosthenesTests.m */; };
+		1ECCAABF1DDE81B0009B1104 /* Prime.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ECCAABE1DDE81B0009B1104 /* Prime.m */; };
+		8A06568F40F80E5E817D58FF /* libPods-SieveOfEratosthenes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A1BAFF0355E23113103F47 /* libPods-SieveOfEratosthenes.a */; };
+		ADED538D18FA3A7ADEB3E71B /* libPods-SieveOfEratosthenesTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E69C5F57DED49C3FA388108 /* libPods-SieveOfEratosthenesTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E825B892581DC1793DFEA8A /* Pods-SieveOfEratosthenes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SieveOfEratosthenes.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SieveOfEratosthenes/Pods-SieveOfEratosthenes.debug.xcconfig"; sourceTree = "<group>"; };
 		1ECCAA921DDE77A7009B1104 /* SieveOfEratosthenes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SieveOfEratosthenes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ECCAA961DDE77A7009B1104 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1ECCAA981DDE77A7009B1104 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -42,6 +46,13 @@
 		1ECCAAAE1DDE77A7009B1104 /* SieveOfEratosthenesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SieveOfEratosthenesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ECCAAB21DDE77A7009B1104 /* SieveOfEratosthenesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SieveOfEratosthenesTests.m; sourceTree = "<group>"; };
 		1ECCAAB41DDE77A7009B1104 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1ECCAABD1DDE81B0009B1104 /* Prime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prime.h; sourceTree = "<group>"; };
+		1ECCAABE1DDE81B0009B1104 /* Prime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Prime.m; sourceTree = "<group>"; };
+		5E69C5F57DED49C3FA388108 /* libPods-SieveOfEratosthenesTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SieveOfEratosthenesTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		77A1BAFF0355E23113103F47 /* libPods-SieveOfEratosthenes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SieveOfEratosthenes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		81A8795E17E29D8D7028B16A /* Pods-SieveOfEratosthenes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SieveOfEratosthenes.release.xcconfig"; path = "Pods/Target Support Files/Pods-SieveOfEratosthenes/Pods-SieveOfEratosthenes.release.xcconfig"; sourceTree = "<group>"; };
+		BA431D4A89C21696188FFE55 /* Pods-SieveOfEratosthenesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SieveOfEratosthenesTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SieveOfEratosthenesTests/Pods-SieveOfEratosthenesTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F4C3A422E7B4FF33BAB3AE6E /* Pods-SieveOfEratosthenesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SieveOfEratosthenesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SieveOfEratosthenesTests/Pods-SieveOfEratosthenesTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A06568F40F80E5E817D58FF /* libPods-SieveOfEratosthenes.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADED538D18FA3A7ADEB3E71B /* libPods-SieveOfEratosthenesTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +81,8 @@
 				1ECCAA941DDE77A7009B1104 /* SieveOfEratosthenes */,
 				1ECCAAB11DDE77A7009B1104 /* SieveOfEratosthenesTests */,
 				1ECCAA931DDE77A7009B1104 /* Products */,
+				64C6A8072A1B2130E7CBFD51 /* Pods */,
+				602D44AB556B9E87CBC038D5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,6 +115,8 @@
 		1ECCAA951DDE77A7009B1104 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1ECCAABD1DDE81B0009B1104 /* Prime.h */,
+				1ECCAABE1DDE81B0009B1104 /* Prime.m */,
 				1ECCAA961DDE77A7009B1104 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -114,6 +131,26 @@
 			path = SieveOfEratosthenesTests;
 			sourceTree = "<group>";
 		};
+		602D44AB556B9E87CBC038D5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				77A1BAFF0355E23113103F47 /* libPods-SieveOfEratosthenes.a */,
+				5E69C5F57DED49C3FA388108 /* libPods-SieveOfEratosthenesTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		64C6A8072A1B2130E7CBFD51 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0E825B892581DC1793DFEA8A /* Pods-SieveOfEratosthenes.debug.xcconfig */,
+				81A8795E17E29D8D7028B16A /* Pods-SieveOfEratosthenes.release.xcconfig */,
+				BA431D4A89C21696188FFE55 /* Pods-SieveOfEratosthenesTests.debug.xcconfig */,
+				F4C3A422E7B4FF33BAB3AE6E /* Pods-SieveOfEratosthenesTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -121,9 +158,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1ECCAAB71DDE77A7009B1104 /* Build configuration list for PBXNativeTarget "SieveOfEratosthenes" */;
 			buildPhases = (
+				922A940CBB7D5311291350C4 /* [CP] Check Pods Manifest.lock */,
 				1ECCAA8E1DDE77A7009B1104 /* Sources */,
 				1ECCAA8F1DDE77A7009B1104 /* Frameworks */,
 				1ECCAA901DDE77A7009B1104 /* Resources */,
+				FF10D17B1EF611A66D291E8B /* [CP] Embed Pods Frameworks */,
+				3480564D2FA12683368CA928 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -138,9 +178,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1ECCAABA1DDE77A7009B1104 /* Build configuration list for PBXNativeTarget "SieveOfEratosthenesTests" */;
 			buildPhases = (
+				26A0D373608D25AF550C952A /* [CP] Check Pods Manifest.lock */,
 				1ECCAAAA1DDE77A7009B1104 /* Sources */,
 				1ECCAAAB1DDE77A7009B1104 /* Frameworks */,
 				1ECCAAAC1DDE77A7009B1104 /* Resources */,
+				45DEC3DF7C293C5FEBAF1C38 /* [CP] Embed Pods Frameworks */,
+				988D98B669283544A4CFA58A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -163,13 +206,12 @@
 				TargetAttributes = {
 					1ECCAA911DDE77A7009B1104 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = LE3Y88K938;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					1ECCAAAD1DDE77A7009B1104 = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = LE3Y88K938;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						TestTargetID = 1ECCAA911DDE77A7009B1104;
 					};
 				};
@@ -213,6 +255,99 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		26A0D373608D25AF550C952A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		3480564D2FA12683368CA928 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SieveOfEratosthenes/Pods-SieveOfEratosthenes-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		45DEC3DF7C293C5FEBAF1C38 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SieveOfEratosthenesTests/Pods-SieveOfEratosthenesTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		922A940CBB7D5311291350C4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		988D98B669283544A4CFA58A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SieveOfEratosthenesTests/Pods-SieveOfEratosthenesTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FF10D17B1EF611A66D291E8B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SieveOfEratosthenes/Pods-SieveOfEratosthenes-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1ECCAA8E1DDE77A7009B1104 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -221,6 +356,7 @@
 				1ECCAAA31DDE77A7009B1104 /* SieveOfEratosthenes.xcdatamodeld in Sources */,
 				1ECCAA9D1DDE77A7009B1104 /* ViewController.m in Sources */,
 				1ECCAA9A1DDE77A7009B1104 /* AppDelegate.m in Sources */,
+				1ECCAABF1DDE81B0009B1104 /* Prime.m in Sources */,
 				1ECCAA971DDE77A7009B1104 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -281,6 +417,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -329,6 +466,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -355,9 +493,11 @@
 		};
 		1ECCAAB81DDE77A7009B1104 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0E825B892581DC1793DFEA8A /* Pods-SieveOfEratosthenes.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = LE3Y88K938;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SieveOfEratosthenes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = personal.kds.SieveOfEratosthenes;
@@ -367,9 +507,11 @@
 		};
 		1ECCAAB91DDE77A7009B1104 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81A8795E17E29D8D7028B16A /* Pods-SieveOfEratosthenes.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = LE3Y88K938;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SieveOfEratosthenes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = personal.kds.SieveOfEratosthenes;
@@ -379,8 +521,10 @@
 		};
 		1ECCAABB1DDE77A7009B1104 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BA431D4A89C21696188FFE55 /* Pods-SieveOfEratosthenesTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = LE3Y88K938;
 				INFOPLIST_FILE = SieveOfEratosthenesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -392,6 +536,7 @@
 		};
 		1ECCAABC1DDE77A7009B1104 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4C3A422E7B4FF33BAB3AE6E /* Pods-SieveOfEratosthenesTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = LE3Y88K938;
@@ -422,6 +567,7 @@
 				1ECCAAB91DDE77A7009B1104 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1ECCAABA1DDE77A7009B1104 /* Build configuration list for PBXNativeTarget "SieveOfEratosthenesTests" */ = {
 			isa = XCConfigurationList;
@@ -430,6 +576,7 @@
 				1ECCAABC1DDE77A7009B1104 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

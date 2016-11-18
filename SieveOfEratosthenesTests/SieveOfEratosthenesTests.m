@@ -6,9 +6,17 @@
 //  Copyright © 2016 Kellie Spears. All rights reserved.
 //
 
+// Collaborators
 #import <XCTest/XCTest.h>
+#import <OCHamcrest.h>
 
-@interface SieveOfEratosthenesTests : XCTestCase
+// Class under test
+#import "Prime.h"
+
+@interface SieveOfEratosthenesTests : XCTestCase {
+
+    Prime *sut;
+}
 
 @end
 
@@ -16,24 +24,44 @@
 
 - (void)setUp {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+
+    sut = [[Prime alloc] initWithLimit:30];
 }
 
 - (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
+
+    // deallocate sut
+    sut = nil;
+
     [super tearDown];
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
+- (void)testPrime_IsNotNil {
+
+    // then
+    assertThat(sut, is(notNilValue()));
 }
 
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
+- (void)test_Prime_IsNULL_IfLimit_IsLessThan_2 {
+
+    // given
+    Prime *prime = [[Prime alloc] initWithLimit:1];
+
+    // then
+    assert([prime sieve] == NULL);
 }
+
+
+- (void)test_Prime_IfLimit_IsGreaterThan_2 {
+
+    // given
+    Prime *prime = [[Prime alloc] initWithLimit:30];
+
+    // then
+    int arr[] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29};
+    int *arr2 = [prime sieve];
+    assertThat(@(arr2 == arr), isTrue());
+}
+
 
 @end

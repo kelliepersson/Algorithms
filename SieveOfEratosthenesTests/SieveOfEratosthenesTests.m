@@ -51,12 +51,10 @@
     assert([prime sieve] == NULL);
 }
 
-
 - (void)test_Prime_IfLimit_IsGreaterThan_2 {
 
     // then
     assertThat([sut sieve], is(equalTo(@[@2, @3, @5, @7, @11, @13, @17, @19, @23, @29])));
 }
-
 
 @end

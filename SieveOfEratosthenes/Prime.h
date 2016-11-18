@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "math.h"
 
 @interface Prime : NSObject
 
--(id)initWithLimit:(int)limit;
+-(id)initWithLimit:(NSUInteger)limit;
 -(NSArray<NSNumber *>*)sieve;
+-(NSArray<NSNumber *>*)sieve2;
 
 @end

@@ -55,7 +55,7 @@
     [self.numbers addObject:[NSNumber numberWithInt:2]];
 
     int i = 3;
-    while (i<self.limit) {
+    while (i<=self.limit) {
         [self.numbers addObject:[NSNumber numberWithInt:i]];
          i += 2;
     }

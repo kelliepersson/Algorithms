@@ -100,7 +100,7 @@
             if(kMultiple > self.limit) break;
 
             if (k % p) // k and p are coprime -> only common divisor is 1 (phi is multiplicative in this case)
-                phi[kMultiple] = @(totient * (p - 1));  // f(ab) = f(a) f(b)phi[p] == (p - 1)
+                phi[kMultiple] = @(totient * (p - 1));  // phi[p] == (p - 1) 
 
             else {
                 phi[kMultiple] = @(totient * p);

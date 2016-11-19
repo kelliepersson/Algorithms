@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1EBCD8C51DE0A2DD00CBEABA /* ViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EBCD8C41DE0A2DD00CBEABA /* ViewControllerTest.m */; };
 		1ECCAA971DDE77A7009B1104 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ECCAA961DDE77A7009B1104 /* main.m */; };
 		1ECCAA9A1DDE77A7009B1104 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ECCAA991DDE77A7009B1104 /* AppDelegate.m */; };
 		1ECCAA9D1DDE77A7009B1104 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ECCAA9C1DDE77A7009B1104 /* ViewController.m */; };
@@ -32,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		0E825B892581DC1793DFEA8A /* Pods-SieveOfEratosthenes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SieveOfEratosthenes.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SieveOfEratosthenes/Pods-SieveOfEratosthenes.debug.xcconfig"; sourceTree = "<group>"; };
+		1EBCD8C41DE0A2DD00CBEABA /* ViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerTest.m; sourceTree = "<group>"; };
 		1ECCAA921DDE77A7009B1104 /* SieveOfEratosthenes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SieveOfEratosthenes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ECCAA961DDE77A7009B1104 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1ECCAA981DDE77A7009B1104 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -83,6 +85,14 @@
 			name = Common;
 			sourceTree = "<group>";
 		};
+		1EBCD8C31DE0A2BA00CBEABA /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1EBCD8C41DE0A2DD00CBEABA /* ViewControllerTest.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		1ECCAA891DDE77A7009B1104 = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +139,7 @@
 		1ECCAAB11DDE77A7009B1104 /* SieveOfEratosthenesTests */ = {
 			isa = PBXGroup;
 			children = (
+				1EBCD8C31DE0A2BA00CBEABA /* Controller */,
 				1EBCD8C21DE0A08C00CBEABA /* Common */,
 				1ECCAAB41DDE77A7009B1104 /* Info.plist */,
 			);
@@ -389,6 +400,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EBCD8C51DE0A2DD00CBEABA /* ViewControllerTest.m in Sources */,
 				1ECCAAB31DDE77A7009B1104 /* PrimeTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,5 +1,5 @@
 //
-//  SieveOfEratosthenesTests.m
+//  PrimeTest.m
 //  SieveOfEratosthenesTests
 //
 //  Created by Kellie Spears on 11/17/16.
@@ -13,14 +13,14 @@
 // Class under test
 #import "Prime.h"
 
-@interface SieveOfEratosthenesTests : XCTestCase {
+@interface PrimeTest : XCTestCase {
 
     Prime *sut;
 }
 
 @end
 
-@implementation SieveOfEratosthenesTests
+@implementation PrimeTest
 
 - (void)setUp {
     [super setUp];

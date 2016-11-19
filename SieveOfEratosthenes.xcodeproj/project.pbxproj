@@ -14,7 +14,7 @@
 		1ECCAAA31DDE77A7009B1104 /* SieveOfEratosthenes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1ECCAAA11DDE77A7009B1104 /* SieveOfEratosthenes.xcdatamodeld */; };
 		1ECCAAA51DDE77A7009B1104 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1ECCAAA41DDE77A7009B1104 /* Assets.xcassets */; };
 		1ECCAAA81DDE77A7009B1104 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ECCAAA61DDE77A7009B1104 /* LaunchScreen.storyboard */; };
-		1ECCAAB31DDE77A7009B1104 /* SieveOfEratosthenesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ECCAAB21DDE77A7009B1104 /* SieveOfEratosthenesTests.m */; };
+		1ECCAAB31DDE77A7009B1104 /* PrimeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ECCAAB21DDE77A7009B1104 /* PrimeTest.m */; };
 		1ECCAABF1DDE81B0009B1104 /* Prime.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ECCAABE1DDE81B0009B1104 /* Prime.m */; };
 		8A06568F40F80E5E817D58FF /* libPods-SieveOfEratosthenes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A1BAFF0355E23113103F47 /* libPods-SieveOfEratosthenes.a */; };
 		ADED538D18FA3A7ADEB3E71B /* libPods-SieveOfEratosthenesTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E69C5F57DED49C3FA388108 /* libPods-SieveOfEratosthenesTests.a */; };
@@ -44,7 +44,7 @@
 		1ECCAAA71DDE77A7009B1104 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1ECCAAA91DDE77A7009B1104 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1ECCAAAE1DDE77A7009B1104 /* SieveOfEratosthenesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SieveOfEratosthenesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1ECCAAB21DDE77A7009B1104 /* SieveOfEratosthenesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SieveOfEratosthenesTests.m; sourceTree = "<group>"; };
+		1ECCAAB21DDE77A7009B1104 /* PrimeTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrimeTest.m; sourceTree = "<group>"; };
 		1ECCAAB41DDE77A7009B1104 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1ECCAABD1DDE81B0009B1104 /* Prime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prime.h; sourceTree = "<group>"; };
 		1ECCAABE1DDE81B0009B1104 /* Prime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Prime.m; sourceTree = "<group>"; };
@@ -98,16 +98,14 @@
 		1ECCAA941DDE77A7009B1104 /* SieveOfEratosthenes */ = {
 			isa = PBXGroup;
 			children = (
-				1ECCAA981DDE77A7009B1104 /* AppDelegate.h */,
-				1ECCAA991DDE77A7009B1104 /* AppDelegate.m */,
-				1ECCAA9B1DDE77A7009B1104 /* ViewController.h */,
-				1ECCAA9C1DDE77A7009B1104 /* ViewController.m */,
+				1EDE523C1DE09DC90065E511 /* Controller */,
+				1EDE523D1DE09DEC0065E511 /* Common */,
+				1ECCAA951DDE77A7009B1104 /* Supporting Files */,
 				1ECCAA9E1DDE77A7009B1104 /* Main.storyboard */,
 				1ECCAAA41DDE77A7009B1104 /* Assets.xcassets */,
 				1ECCAAA61DDE77A7009B1104 /* LaunchScreen.storyboard */,
 				1ECCAAA91DDE77A7009B1104 /* Info.plist */,
 				1ECCAAA11DDE77A7009B1104 /* SieveOfEratosthenes.xcdatamodeld */,
-				1ECCAA951DDE77A7009B1104 /* Supporting Files */,
 			);
 			path = SieveOfEratosthenes;
 			sourceTree = "<group>";
@@ -115,8 +113,6 @@
 		1ECCAA951DDE77A7009B1104 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				1ECCAABD1DDE81B0009B1104 /* Prime.h */,
-				1ECCAABE1DDE81B0009B1104 /* Prime.m */,
 				1ECCAA961DDE77A7009B1104 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -125,10 +121,30 @@
 		1ECCAAB11DDE77A7009B1104 /* SieveOfEratosthenesTests */ = {
 			isa = PBXGroup;
 			children = (
-				1ECCAAB21DDE77A7009B1104 /* SieveOfEratosthenesTests.m */,
+				1ECCAAB21DDE77A7009B1104 /* PrimeTest.m */,
 				1ECCAAB41DDE77A7009B1104 /* Info.plist */,
 			);
 			path = SieveOfEratosthenesTests;
+			sourceTree = "<group>";
+		};
+		1EDE523C1DE09DC90065E511 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1ECCAA981DDE77A7009B1104 /* AppDelegate.h */,
+				1ECCAA991DDE77A7009B1104 /* AppDelegate.m */,
+				1ECCAA9B1DDE77A7009B1104 /* ViewController.h */,
+				1ECCAA9C1DDE77A7009B1104 /* ViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		1EDE523D1DE09DEC0065E511 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				1ECCAABD1DDE81B0009B1104 /* Prime.h */,
+				1ECCAABE1DDE81B0009B1104 /* Prime.m */,
+			);
+			name = Common;
 			sourceTree = "<group>";
 		};
 		602D44AB556B9E87CBC038D5 /* Frameworks */ = {
@@ -365,7 +381,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1ECCAAB31DDE77A7009B1104 /* SieveOfEratosthenesTests.m in Sources */,
+				1ECCAAB31DDE77A7009B1104 /* PrimeTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

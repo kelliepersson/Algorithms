@@ -36,25 +36,65 @@
     [super tearDown];
 }
 
-- (void)testPrime_IsNotNil {
+- (void)test_Prime_IsNotNil {
 
-    // then
+    // then	
     assertThat(sut, is(notNilValue()));
 }
 
-- (void)test_Prime_IsNULL_IfLimit_IsLessThan_2 {
+#pragma mark - Sieve tests
+- (void)test_Sieve_IsNil_IfLimit_IsLessThan_2 {
 
     // given
-    Prime *prime = [[Prime alloc] initWithLimit:1];
+    sut = [[Prime alloc] initWithLimit:1];
 
     // then
-    assert([prime sieve] == NULL);
+    assertThat(@([sut sieve].count), is(@0));
 }
 
-- (void)test_Prime_IfLimit_IsGreaterThan_2 {
+- (void)test_Sieve_IfLimit_IsGreaterThan_2 {
 
     // then
     assertThat([sut sieve], is(equalTo(@[@2, @3, @5, @7, @11, @13, @17, @19, @23, @29])));
+}
+
+#pragma mark - Sieve 2 tests
+- (void)test_Sieve2_IsNil_IfLimit_IsLessThan_2 {
+
+    // given
+    sut = [[Prime alloc] initWithLimit:1];
+
+    // then
+    assertThat(@([sut sieve2].count), is(@0));
+}
+
+- (void)test_Sieve2_IfLimit_IsGreaterThan_2 {
+
+    // then
+    assertThat([sut sieve2], is(equalTo(@[@2, @3, @5, @7, @11, @13, @17, @19, @23, @29])));
+}
+
+#pragma mark - performance tests
+// For smaller limit (N), sieve is faster
+- (void)test_SieveOfEratosthenesPerformance {
+    // This is an example of a performance test case.
+
+    sut = [[Prime alloc] initWithLimit:100000];
+    [self measureBlock:^{
+
+        [sut sieve];
+    }];
+}
+
+// For larger limit (N), sieve2 is faster and memory efficient
+- (void)test_EulerSievePerformance {
+    // This is an example of a performance test case.
+
+    Prime *prime = [[Prime alloc] initWithLimit:100000];
+    [self measureBlock:^{
+
+        [prime sieve2];
+    }];
 }
 
 @end

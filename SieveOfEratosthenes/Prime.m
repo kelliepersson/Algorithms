@@ -11,7 +11,6 @@
 @interface Prime()
 
 @property (nonatomic, assign) NSUInteger limit;
-@property (nonatomic, strong) NSMutableArray<NSNumber *>*primes;
 
 @end
 
@@ -24,59 +23,50 @@
     if(self) {
 
         _limit = limit;
-        _primes = nil;
     }
 
     return self;
 }
 
--(void)extract:(NSNumber *)number {
-
-    // 2(b) - Make a new list in which each element of the list is a multiple of the passed in number
-    NSMutableArray *multiple = [[NSMutableArray alloc] init];
-    for(int i=0; i<self.limit; i++) {
-        int multNumber = [number intValue] * (i+2);
-
-        // only need to add values less than limit
-        if(multNumber > self.limit) break;
-
-        multiple[i] = [NSNumber numberWithInteger:multNumber];
-    }
-
-    // 3 - Exclude new list values from original list
-    NSPredicate *excludePredicate = [NSPredicate predicateWithFormat:@"SELF in %@", multiple];
-    NSIndexSet *removeIndexes = [self.primes indexesOfObjectsPassingTest:^BOOL(NSNumber * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        return [excludePredicate evaluateWithObject:obj];
-    }];
-    [self.primes removeObjectsAtIndexes:removeIndexes];
-}
-
 -(NSArray<NSNumber *>*)sieve {
+   
+    // array that holds prime numbers
+    NSMutableArray *primes = [[NSMutableArray alloc] init];
+    if(self.limit < 2) return primes;
 
-    // anything less than 2 is not valid limit
-    if(self.limit < 2) return NULL;
-
-    // 1 - Make a list of (odd) numbers from 2 to maximum number 'limit';
-    self.primes = [[NSMutableArray alloc] init];
-    [self.primes addObject:@2];
+    NSMutableArray<NSNumber *> *numbers = [NSMutableArray array];
+    [numbers addObject:@2];  // setup first prime
 
     int i = 3;
-    while (i<=self.limit) {
-        [self.primes addObject:[NSNumber numberWithInt:i]];
+    while (i <=self.limit) {  // only even numbers
+        [numbers addObject:@(i)];
          i += 2;
     }
 
-    // 2(a) - Start with first odd number (3), iterate through list
-    NSArray *numbersSub = [self.primes subarrayWithRange:NSMakeRange(1, self.primes.count-1)];
-    [numbersSub enumerateObjectsUsingBlock:^(NSNumber * _Nonnull number, NSUInteger idx, BOOL * _Nonnull stop) {
+    // keep 1st number of the set and remove from array
+    for (int i=0; i<numbers.count; i++) {
 
-        // if the next identified prime exceeds the square root of the upper limit, all the remaining numbers in the list are prime
-        if([number intValue] > sqrt(self.limit)) *stop = YES;
+        NSUInteger prime = [numbers[0] unsignedIntegerValue];
+        [primes addObject:@(prime)];
+        [numbers removeObject:@(prime)];
 
-        [self extract:number];
-    }];
+        if(prime * prime > self.limit) break; // numbers below p^2 are all primes so if p^2 > x, we're done
 
-    return [self.primes copy];
+        // remove number from set if it is a multiple
+        NSUInteger number = [numbers[0] unsignedIntegerValue];
+        for (NSInteger i = numbers.count - 1; i >= 0; i--) {
+
+            NSUInteger product = [numbers[i] unsignedIntegerValue];
+            if (!(product % prime))
+                [numbers removeObjectAtIndex:i];
+        }
+
+        if(number * number > self.limit) break; // numbers below n^2 are all primes so if n^2 > x, we're done
+    }
+
+    [primes addObjectsFromArray:numbers];
+
+    return [primes copy];
 }
 
 -(NSArray<NSNumber *>*)sieve2 {
@@ -109,7 +99,7 @@
 
             if(kMultiple > self.limit) break;
 
-            if (k % p) // k and p are coprime -> phi is multiplicative in this case
+            if (k % p) // k and p are coprime -> only common divisor is 1 (phi is multiplicative in this case)
                 phi[kMultiple] = @(totient * (p - 1));  // f(ab) = f(a) f(b)phi[p] == (p - 1)
 
             else {

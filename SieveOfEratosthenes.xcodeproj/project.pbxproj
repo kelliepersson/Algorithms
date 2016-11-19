@@ -75,6 +75,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1EBCD8C21DE0A08C00CBEABA /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				1ECCAAB21DDE77A7009B1104 /* PrimeTest.m */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
 		1ECCAA891DDE77A7009B1104 = {
 			isa = PBXGroup;
 			children = (
@@ -121,7 +129,7 @@
 		1ECCAAB11DDE77A7009B1104 /* SieveOfEratosthenesTests */ = {
 			isa = PBXGroup;
 			children = (
-				1ECCAAB21DDE77A7009B1104 /* PrimeTest.m */,
+				1EBCD8C21DE0A08C00CBEABA /* Common */,
 				1ECCAAB41DDE77A7009B1104 /* Info.plist */,
 			);
 			path = SieveOfEratosthenesTests;

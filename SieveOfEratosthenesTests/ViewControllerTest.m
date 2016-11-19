@@ -13,7 +13,12 @@
 // Class under test
 #import "ViewController.h"
 
-@interface ViewControllerTest : XCTestCase
+@interface ViewControllerTest : XCTestCase {
+
+    UIWindow *window;
+    UIStoryboard *storyBoard;
+    ViewController *sut;
+}
 
 @end
 
@@ -21,24 +26,54 @@
 
 - (void)setUp {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+
+    // initialize window
+    window = [[UIWindow alloc] init];
+
+    // setup sut
+    storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    sut = [storyBoard instantiateViewControllerWithIdentifier:@"ViewController"];
+
+    // Add the view controller's view to the window and display
+    window.rootViewController = sut;
+    [window addSubview:sut.view];
 }
 
-- (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
+-(void)tearDown {
+
+    // ensure collaborators are deallocated;
+    window = nil;
+
+    // ensure system under test is deallocated;
+    sut = nil;
+
     [super tearDown];
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
+#pragma mark - IBOutlet - limitLabel
+-(void)test_LimitLabel_ShouldBeConnected {
+
+    // then
+    assertThat([sut limitLabel], is(notNilValue()));
 }
 
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
+-(void)test_LimitLabel_sOfCorrectType {
+
+    // then
+    assertThat(@([sut.limitLabel isKindOfClass:[UILabel class]]), is(@YES));
+}
+
+#pragma mark - IBOutlet - limitTextField
+-(void)test_LimitTextField_ShouldBeConnected {
+
+    // then
+    assertThat([sut limitTextField], is(notNilValue()));
+}
+
+-(void)test_LimitTextField_IsOfCorrectType {
+
+    // then
+    assertThat(@([sut.limitTextField isKindOfClass:[UITextField class]]), is(@YES));
 }
 
 @end

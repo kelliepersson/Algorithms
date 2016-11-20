@@ -43,7 +43,16 @@
 }
 
 #pragma mark - Sieve tests
-- (void)test_Sieve_IsNil_IfLimit_IsLessThan_2 {
+- (void)test_Sieve_IfLimit_IsNotSet {
+
+    // given
+    sut = [[Prime alloc] init];
+
+    // then
+    assertThat(@([sut sieve].count), is(@0));
+}
+
+- (void)test_Sieve_IfLimit_IsLessThan_2 {
 
     // given
     sut = [[Prime alloc] initWithLimit:1];
@@ -59,7 +68,16 @@
 }
 
 #pragma mark - Sieve 2 tests
-- (void)test_Sieve2_IsNil_IfLimit_IsLessThan_2 {
+- (void)test_Sieve2_IfLimit_IsNotSet {
+
+    // given
+    sut = [[Prime alloc] init];
+
+    // then
+    assertThat(@([sut sieve2].count), is(@0));
+}
+
+- (void)test_Sieve2_IfLimit_IsLessThan_2 {
 
     // given
     sut = [[Prime alloc] initWithLimit:1];
@@ -67,6 +85,7 @@
     // then
     assertThat(@([sut sieve2].count), is(@0));
 }
+
 
 - (void)test_Sieve2_IfLimit_IsGreaterThan_2 {
 

@@ -67,8 +67,28 @@ NSString *const LIMIT_LABEL = @"Please enter a number.";
     self.replicator = [[CAReplicatorLayer alloc] init];
     self.replicator.bounds = CGRectMake(0, 0, 60, 60);
     self.replicator.position = self.view.center;
-    self.replicator.backgroundColor = [UIColor lightGrayColor].CGColor;
     [self.view.layer addSublayer:self.replicator];
+
+    CALayer *bar = [[CALayer alloc] init];
+    bar.bounds = CGRectMake(0, 0, 8, 40);
+    bar.position = CGPointMake(10, 75);
+    bar.cornerRadius = 2;
+    bar.backgroundColor = [UIColor redColor].CGColor;
+    [self.replicator addSublayer:bar];
+
+    CABasicAnimation *move = [[CABasicAnimation alloc] init];
+    move.keyPath = @"position.y";
+    move.toValue = @(bar.position.y - 35);
+    move.duration = 0.5;
+    move.autoreverses = YES;
+    move.repeatCount = INFINITY;
+
+    [bar addAnimation:move forKey:nil];
+
+    self.replicator.instanceCount = 3;
+    self.replicator.instanceTransform = CATransform3DMakeTranslation(20, 0, 0);
+    self.replicator.instanceDelay = 0.33;
+    self.replicator.masksToBounds = YES;
 }
 
 #pragma mark - UITextFieldDelegate methods

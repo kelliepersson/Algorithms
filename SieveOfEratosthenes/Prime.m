@@ -10,13 +10,13 @@
 
 @interface Prime()
 
-@property (nonatomic, assign) NSUInteger limit;
+@property (nonatomic, assign) NSInteger limit;
 
 @end
 
 @implementation Prime
 
--(id)initWithLimit:(NSUInteger)limit {
+-(id)initWithLimit:(NSInteger)limit {
 
     self = [super init];
 
@@ -44,7 +44,7 @@
     }
 
     // keep 1st number of the set and remove from array
-    for (int i=0; i<numbers.count; i++) {
+    for (NSUInteger i=0; i<numbers.count; i++) {
 
         NSUInteger prime = [numbers[0] unsignedIntegerValue];
         [primes addObject:@(prime)];
@@ -81,9 +81,9 @@
         [phi addObject:@0];
 
     // :set phi[1] to 1
-    phi[1] = @1;
+    if(phi.count != 0) phi[1] = @1;
 
-    for (NSUInteger k = 2; k <= self.limit; ++k) {
+    for (NSInteger k = 2; k <= self.limit; ++k) {
 
         if ([phi[k] isEqual: @0]) { // k cannot be further divided; it is prime
 
@@ -95,15 +95,15 @@
         for(NSNumber *prime in primes) {
 
             NSUInteger p = [prime unsignedIntegerValue];
-            NSUInteger kMultiple = k * p;
+            NSUInteger kMult = k * p;
 
-            if(kMultiple > self.limit) break;
+            if(kMult > self.limit) break;
 
             if (k % p) // k and p are coprime -> only common divisor is 1 (phi is multiplicative in this case)
-                phi[kMultiple] = @(totient * (p - 1));  // phi[p] == (p - 1) 
+                phi[kMult] = @(totient * (p - 1));  // phi[p] == (p - 1)
 
             else {
-                phi[kMultiple] = @(totient * p);
+                phi[kMult] = @(totient * p);
                 break;
             }
         }

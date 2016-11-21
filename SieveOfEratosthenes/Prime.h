@@ -10,7 +10,7 @@
 
 @interface Prime : NSObject
 
--(id)initWithLimit:(NSUInteger)limit;
+-(id)initWithLimit:(NSInteger)limit;
 
 /*
  * Implementation of Sieve of Eratosthenes (Euler's Sieve):http://en.wikipedia.org/wiki/Sieve_of_Eratosthenes#Euler.27s_sieve

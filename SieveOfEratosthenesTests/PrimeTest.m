@@ -55,7 +55,7 @@
 - (void)test_Sieve_IfLimit_IsLessThan_2 {
 
     // given
-    sut = [[Prime alloc] initWithLimit:1];
+    sut = [[Prime alloc] initWithLimit:-3];
 
     // then
     assertThat(@([sut sieve].count), is(@0));
@@ -80,12 +80,11 @@
 - (void)test_Sieve2_IfLimit_IsLessThan_2 {
 
     // given
-    sut = [[Prime alloc] initWithLimit:1];
+    sut = [[Prime alloc] initWithLimit:-15];
 
     // then
     assertThat(@([sut sieve2].count), is(@0));
 }
-
 
 - (void)test_Sieve2_IfLimit_IsGreaterThan_2 {
 

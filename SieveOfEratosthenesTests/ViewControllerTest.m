@@ -82,4 +82,74 @@
     assertThat(@(sut.limitTextField.keyboardType), is(@(UIKeyboardTypeNumberPad)));
 }
 
+-(void)test_ValidateLimitReplacement_ReturnsNO_WhenSingleCharacterIsNonDigit {
+
+    // given
+    NSString *string = @"A";
+    NSRange range = [string rangeOfString:string];
+
+    // then
+    assertThat(@([sut validateLimit:range replacement:string]), is(@NO));
+}
+
+-(void)test_ValidateLimitReplacement_ReturnsYES_WhenSingleCharacterInRange {
+
+    // given
+    NSString *string = @"8";
+    NSRange range = [string rangeOfString:string];
+
+    // then
+    assertThat(@([sut validateLimit:range replacement:string]), is(@YES));
+}
+
+-(void)test_ValidateLimitReplacement_ReturnsNO_WhenSingleCharacterBeginsWith_0 {
+
+    // given
+    NSString *string = @"0";
+    NSRange range = [string rangeOfString:string];
+
+    // then
+    assertThat(@([sut validateLimit:range replacement:string]), is(@NO));
+}
+
+-(void)test_ValidateLimitReplacement_ReturnsNO_WhenMultipleCharactersContainNonDigits {
+
+    // given
+    NSString *string = @"1A45Ds ";
+    NSRange range = [string rangeOfString:string];
+
+    // then
+    assertThat(@([sut validateLimit:range replacement:string]), is(@NO));
+}
+
+-(void)test_ValidateLimitReplacement_ReturnsYES_WhenMultipleCharactersInRange {
+
+    // given
+    NSString *string = @"999999";
+    NSRange range = [string rangeOfString:string];
+
+    // then
+    assertThat(@([sut validateLimit:range replacement:string]), is(@YES));
+}
+
+-(void)test_ValidateLimitReplacement_ReturnsNO_WhenMultipleCharacterBeginsWith_0 {
+
+    // given
+    NSString *string = @"08055551";
+    NSRange range = [string rangeOfString:string];
+
+    // then
+    assertThat(@([sut validateLimit:range replacement:string]), is(@NO));
+}
+
+-(void)test_ValidateLimitReplacement_ReturnsNO_WhenMultipleCharactersEvaluateToNumber_OutOfRange {
+
+    // given
+    NSString *string = @"1000000";
+    NSRange range = [string rangeOfString:string];
+
+    // then
+    assertThat(@([sut validateLimit:range replacement:string]), is(@NO));
+}
+
 @end

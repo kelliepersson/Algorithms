@@ -4,6 +4,25 @@
 <dict>
 	<key>runDestinationsByUUID</key>
 	<dict>
+		<key>537550CF-E9B0-4980-BFCA-1CA679B08476</key>
+		<dict>
+			<key>localComputer</key>
+			<dict>
+				<key>modelCode</key>
+				<string>VMware7,1</string>
+				<key>platformIdentifier</key>
+				<string>com.apple.platform.macosx</string>
+			</dict>
+			<key>targetArchitecture</key>
+			<string>i386</string>
+			<key>targetDevice</key>
+			<dict>
+				<key>modelCode</key>
+				<string>iPhone5,1</string>
+				<key>platformIdentifier</key>
+				<string>com.apple.platform.iphonesimulator</string>
+			</dict>
+		</dict>
 		<key>F932CC62-41B1-4C9E-B7C5-7DF7A2EAFE7D</key>
 		<dict>
 			<key>localComputer</key>

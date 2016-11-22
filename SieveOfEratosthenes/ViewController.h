@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+extern NSInteger const LIMIT_MAX;
 extern NSString *const LIMIT_LABEL;
 extern NSString *const TITLE_LABEL;
 
@@ -16,6 +17,8 @@ extern NSString *const TITLE_LABEL;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *limitLabel;
 @property (weak, nonatomic) IBOutlet UITextField *limitTextField;
+
+-(BOOL)validateLimit:(NSRange)range replacement:(NSString *)string;
 
 @end
 

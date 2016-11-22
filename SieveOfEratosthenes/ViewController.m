@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 
+NSInteger const LIMIT_MAX = 1000000;
 NSString *const LIMIT_LABEL = @"Please enter a number.";
 NSString *const TITLE_LABEL = @"Prime Machine";
 
@@ -164,8 +165,22 @@ NSString *const TITLE_LABEL = @"Prime Machine";
  */
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
 
+    return [self validateLimit:range replacement:string];
+}
+
+// Called when the user presses the clear button
+- (BOOL)textFieldShouldClear:(UITextField *)textField {
+    return YES;
+}
+
+#pragma mark - helper methods
+-(BOOL)validateLimit:(NSRange)range replacement:(NSString *)string {
+
     // empty string is not valid
     if (!string.length && range.length <= 0) return NO;
+
+    // remove leading zero(s)
+    if ([string hasPrefix:@"0"]) return NO;
 
     NSCharacterSet *keepSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
     NSCharacterSet *removeSet = [keepSet invertedSet];
@@ -175,13 +190,7 @@ NSString *const TITLE_LABEL = @"Prime Machine";
     if (removeRange.location != NSNotFound) return NO;
 
     // no complaints, string is valid number
-    return YES;
+    return [string integerValue] < LIMIT_MAX;
 }
-
-// Called when the user presses the clear button
-- (BOOL)textFieldShouldClear:(UITextField *)textField {
-    return YES;
-}
-
 
 @end

@@ -140,7 +140,7 @@ NSString *const TITLE_LABEL = @"Prime Machine";
     [star addCurveToPoint:CGPointMake(23.426, 19.882) controlPoint1:CGPointMake(48.009, 2.664) controlPoint2:CGPointMake(39.814, -14.555)];
     [star closePath];
 
-    return CGPathCreateCopy(star.CGPath);
+    return star.CGPath;
 }
 
 #pragma mark - UITextFieldDelegate methods

@@ -18,7 +18,7 @@ extern NSString *const TITLE_LABEL;
 @property (weak, nonatomic) IBOutlet UILabel *limitLabel;
 @property (weak, nonatomic) IBOutlet UITextField *limitTextField;
 
--(BOOL)validateLimit:(NSRange)range replacement:(NSString *)string;
+-(BOOL)validateLimit:(NSString *)textfield range:(NSRange)range replacement:(NSString *)string;
 
 @end
 

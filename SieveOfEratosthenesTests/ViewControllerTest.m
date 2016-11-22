@@ -89,27 +89,27 @@
     NSRange range = [string rangeOfString:string];
 
     // then
-    assertThat(@([sut validateLimit:range replacement:string]), is(@NO));
+    assertThat(@([sut validateLimit:@"" range:range replacement:string]), is(@NO));
 }
 
--(void)test_ValidateLimitReplacement_ReturnsYES_WhenSingleCharacterInRange {
-
-    // given
-    NSString *string = @"8";
-    NSRange range = [string rangeOfString:string];
-
-    // then
-    assertThat(@([sut validateLimit:range replacement:string]), is(@YES));
-}
-
--(void)test_ValidateLimitReplacement_ReturnsNO_WhenSingleCharacterBeginsWith_0 {
+-(void)test_ValidateLimitReplacement_ReturnsNO_WhenFirstCharacterEnteredIs_0 {
 
     // given
     NSString *string = @"0";
     NSRange range = [string rangeOfString:string];
 
     // then
-    assertThat(@([sut validateLimit:range replacement:string]), is(@NO));
+    assertThat(@([sut validateLimit:@"" range:range replacement:string]), is(@NO));
+}
+
+-(void)test_ValidateLimitReplacement_ReturnsYES_WhenSubsequentCharacterEnteredIs_0 {
+
+    // given
+    NSString *string = @"0";
+    NSRange range = [string rangeOfString:string];
+
+    // then
+    assertThat(@([sut validateLimit:@"1" range:range replacement:string]), is(@YES));
 }
 
 -(void)test_ValidateLimitReplacement_ReturnsNO_WhenMultipleCharactersContainNonDigits {
@@ -119,37 +119,47 @@
     NSRange range = [string rangeOfString:string];
 
     // then
-    assertThat(@([sut validateLimit:range replacement:string]), is(@NO));
+    assertThat(@([sut validateLimit:@"" range:range replacement:string]), is(@NO));
 }
 
 -(void)test_ValidateLimitReplacement_ReturnsYES_WhenMultipleCharactersInRange {
 
     // given
-    NSString *string = @"999999";
+    NSString *string = @"999000";
     NSRange range = [string rangeOfString:string];
 
     // then
-    assertThat(@([sut validateLimit:range replacement:string]), is(@YES));
+    assertThat(@([sut validateLimit:@"" range:range replacement:string]), is(@YES));
 }
 
 -(void)test_ValidateLimitReplacement_ReturnsNO_WhenMultipleCharacterBeginsWith_0 {
 
     // given
-    NSString *string = @"08055551";
+    NSString *string = @"0001";
     NSRange range = [string rangeOfString:string];
 
     // then
-    assertThat(@([sut validateLimit:range replacement:string]), is(@NO));
+    assertThat(@([sut validateLimit:@"" range:range replacement:string]), is(@NO));
 }
 
--(void)test_ValidateLimitReplacement_ReturnsNO_WhenMultipleCharactersEvaluateToNumber_OutOfRange {
+-(void)test_ValidateLimitReplacement_ReturnsNO_WhenMultipleCharactersEvaluateToNumber_WithinRange {
 
     // given
     NSString *string = @"1000000";
     NSRange range = [string rangeOfString:string];
 
     // then
-    assertThat(@([sut validateLimit:range replacement:string]), is(@NO));
+    assertThat(@([sut validateLimit:@"" range:range replacement:string]), is(@YES));
+}
+
+-(void)test_ValidateLimitReplacement_ReturnsNO_WhenMultipleCharactersEvaluateToNumber_OutOfRange {
+
+    // given
+    NSString *string = @"1000001";
+    NSRange range = [string rangeOfString:string];
+
+    // then
+    assertThat(@([sut validateLimit:@"" range:range replacement:string]), is(@NO));
 }
 
 @end

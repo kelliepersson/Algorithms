@@ -165,7 +165,7 @@ NSString *const TITLE_LABEL = @"Prime Machine";
  */
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
 
-    return [self validateLimit:range replacement:string];
+    return [self validateLimit:textField.text range:range replacement:string];
 }
 
 // Called when the user presses the clear button
@@ -174,13 +174,13 @@ NSString *const TITLE_LABEL = @"Prime Machine";
 }
 
 #pragma mark - helper methods
--(BOOL)validateLimit:(NSRange)range replacement:(NSString *)string {
+-(BOOL)validateLimit:(NSString *)textfield range:(NSRange)range replacement:(NSString *)string {
 
     // empty string is not valid
     if (!string.length && range.length <= 0) return NO;
 
     // remove leading zero(s)
-    if ([string hasPrefix:@"0"]) return NO;
+    if ([string hasPrefix:@"0"] && !textfield.length) return NO;
 
     NSCharacterSet *keepSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
     NSCharacterSet *removeSet = [keepSet invertedSet];
@@ -190,7 +190,7 @@ NSString *const TITLE_LABEL = @"Prime Machine";
     if (removeRange.location != NSNotFound) return NO;
 
     // no complaints, string is valid number
-    return [string integerValue] < LIMIT_MAX;
+    return [[textfield stringByAppendingString:string] integerValue] <= LIMIT_MAX;
 }
 
 @end

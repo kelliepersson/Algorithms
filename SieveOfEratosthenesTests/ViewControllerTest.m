@@ -50,38 +50,76 @@
     [super tearDown];
 }
 
-#pragma mark - IBOutlet - limitLabel
--(void)test_LimitLabel_ShouldBeConnected {
+#pragma mark - IBOutlet - titleLabel
+-(void)test_titleLabel_ShouldBeConnected {
 
     // then
-    assertThat(sut.limitLabel, is(notNilValue()));
+    assertThat(sut.titleLabel, is(notNilValue()));
 }
 
--(void)test_LimitLabel_sOfCorrectType {
+-(void)test_titleLabel_IsOfCorrectType {
 
     // then
-    assertThat(@([sut.limitLabel isKindOfClass:[UILabel class]]), is(@YES));
+    assertThat(@([sut.titleLabel isKindOfClass:[UILabel class]]), is(@YES));
+}
+
+-(void)test_titleLabel_IsCorrectlyLabeled {
+
+    // then
+    assertThat(sut.titleLabel.text, is(@"Prime Time"));
 }
 
 #pragma mark - IBOutlet - limitTextField
--(void)test_LimitTextField_ShouldBeConnected {
+-(void)test_limitTextField_ShouldBeConnected {
 
     // then
     assertThat(sut.limitTextField, is(notNilValue()));
 }
 
--(void)test_LimitTextField_IsOfCorrectType {	
+-(void)test_limitTextField_IsOfCorrectType {
 
     // then
     assertThat(@([sut.limitTextField isKindOfClass:[UITextField class]]), is(@YES));
 }
 
--(void)test_LimitTextField_IsUsingNumberPadKeyboard {
+-(void)test_limitTextField_HasPlaceholder {
+
+    // then
+    assertThat(sut.limitTextField.placeholder, is(@"ENTER LIMIT (BETWEEN 1-1000000)"));
+}
+
+-(void)test_limitTextField_IsUsingNumberPadKeyboard {
 
     // then
     assertThat(@(sut.limitTextField.keyboardType), is(@(UIKeyboardTypeNumberPad)));
 }
 
+#pragma mark - IBOutlet - findButton
+-(void)test_findButton_ShouldBeConnected {
+
+    // then
+    assertThat(sut.findButton, is(notNilValue()));
+}
+
+-(void)test_findButton_IsOfCorrectType {
+
+    // then
+    assertThat(@([sut.findButton isKindOfClass:[UIButton class]]), is(@YES));
+}
+
+- (void)test_findButton_IsCorrectlyLabeled {
+
+    // then
+    assertThat(sut.findButton.currentTitle, is(@"FIND"));
+}
+
+- (void)test_findButton_Action {
+
+    // then
+    assertThat([[sut findButton] actionsForTarget:sut forControlEvent:UIControlEventTouchUpInside], contains(@"findPrimes:", nil));
+}
+
+#pragma mark - validateLimit tests
 -(void)test_ValidateLimitReplacement_ReturnsNO_WhenSingleCharacterIsNonDigit {
 
     // given

@@ -9,15 +9,17 @@
 #import <UIKit/UIKit.h>
 
 extern NSInteger const LIMIT_MAX;
-extern NSString *const LIMIT_LABEL;
+extern NSString *const FIND_BUTTON;
+extern NSString *const LIMIT_PLACEHOLDER;
 extern NSString *const TITLE_LABEL;
 
 @interface ViewController : UIViewController<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *limitLabel;
 @property (weak, nonatomic) IBOutlet UITextField *limitTextField;
+@property (weak, nonatomic) IBOutlet UIButton *findButton;
 
+- (IBAction)findPrimes:(UIButton *)sender;
 -(BOOL)validateLimit:(NSString *)textfield range:(NSRange)range replacement:(NSString *)string;
 
 @end

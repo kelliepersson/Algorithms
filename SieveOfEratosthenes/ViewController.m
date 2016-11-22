@@ -9,8 +9,9 @@
 #import "ViewController.h"
 
 NSInteger const LIMIT_MAX = 1000000;
-NSString *const LIMIT_LABEL = @"Please enter a number.";
-NSString *const TITLE_LABEL = @"Prime Machine";
+NSString *const FIND_BUTTON = @"FIND";
+NSString *const LIMIT_PLACEHOLDER = @"ENTER LIMIT (BETWEEN 1-1000000)";
+NSString *const TITLE_LABEL = @"Prime Time";
 
 @interface ViewController ()
 
@@ -28,8 +29,10 @@ NSString *const TITLE_LABEL = @"Prime Machine";
     [self resultsAnimation]; // ->[self calculateAnimation];
 
     // setup label
-    self.limitLabel.text = LIMIT_LABEL;
     self.titleLabel.text = TITLE_LABEL;
+
+    // setup button
+    [self.findButton setTitle:FIND_BUTTON forState:UIControlStateNormal];
 
     // setup keyboard
     UIToolbar *keyboardToolbar = [[UIToolbar alloc] init];
@@ -41,8 +44,9 @@ NSString *const TITLE_LABEL = @"Prime Machine";
 
     // setup text field
     self.limitTextField.delegate = self;
+    self.limitTextField.placeholder = LIMIT_PLACEHOLDER;
     self.limitTextField.keyboardType = UIKeyboardTypeNumberPad;
-    self.limitTextField.inputAccessoryView	 = keyboardToolbar;
+    self.limitTextField.inputAccessoryView = keyboardToolbar;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -174,6 +178,9 @@ NSString *const TITLE_LABEL = @"Prime Machine";
 }
 
 #pragma mark - helper methods
+- (IBAction)findPrimes:(UIButton *)sender {
+}
+
 -(BOOL)validateLimit:(NSString *)textfield range:(NSRange)range replacement:(NSString *)string {
 
     // empty string is not valid

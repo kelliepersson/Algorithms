@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina5_5" orientation="landscape">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,11 +19,11 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prime Machine" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SIY-We-EYw">
-                                <rect key="frame" x="241" y="35" width="254" height="55"/>
+                                <rect key="frame" x="0.0" y="35" width="375" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="oAo-zt-J7Q"/>
                                 </constraints>
@@ -30,42 +31,42 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="INM-ct-lJm">
-                                <rect key="frame" x="241" y="107" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="KEW-Bd-lWz" userLabel="Limit Text Field">
-                                <rect key="frame" x="241" y="136" width="254" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="254" id="Vn8-t9-YBq"/>
-                                </constraints>
+                                <rect key="frame" x="26" y="110" width="323" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ozU-cF-bi2">
+                                <rect key="frame" x="164.5" y="161" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="findPrimes:" destination="BYZ-38-t0r" eventType="touchUpInside" id="goC-Os-GZV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="KEW-Bd-lWz" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="116" id="FwE-Sc-4Uo"/>
+                            <constraint firstItem="ozU-cF-bi2" firstAttribute="centerX" secondItem="KEW-Bd-lWz" secondAttribute="centerX" id="Ewa-lq-iOw"/>
+                            <constraint firstItem="KEW-Bd-lWz" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="90" id="FwE-Sc-4Uo"/>
+                            <constraint firstItem="ozU-cF-bi2" firstAttribute="top" secondItem="KEW-Bd-lWz" secondAttribute="bottom" constant="21" id="GRS-Y7-js7"/>
                             <constraint firstItem="KEW-Bd-lWz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GbJ-Ye-8l9"/>
                             <constraint firstItem="SIY-We-EYw" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="15" id="IS6-se-WKO"/>
-                            <constraint firstItem="KEW-Bd-lWz" firstAttribute="leading" secondItem="INM-ct-lJm" secondAttribute="leading" id="Ufa-xm-RMX"/>
+                            <constraint firstItem="SIY-We-EYw" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="UbN-3v-yf5"/>
                             <constraint firstItem="SIY-We-EYw" firstAttribute="centerX" secondItem="KEW-Bd-lWz" secondAttribute="centerX" id="a3j-FE-osh"/>
-                            <constraint firstItem="SIY-We-EYw" firstAttribute="leading" secondItem="INM-ct-lJm" secondAttribute="leading" id="c7p-GH-f77"/>
-                            <constraint firstItem="KEW-Bd-lWz" firstAttribute="top" secondItem="INM-ct-lJm" secondAttribute="bottom" constant="8" symbolic="YES" id="o95-E8-eyv"/>
+                            <constraint firstItem="KEW-Bd-lWz" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="kVh-5B-3Oi"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="KEW-Bd-lWz" secondAttribute="trailing" constant="10" id="qAA-03-VH6"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="limitLabel" destination="INM-ct-lJm" id="DBK-JP-QSd"/>
+                        <outlet property="findButton" destination="ozU-cF-bi2" id="8Lt-Xi-IRm"/>
                         <outlet property="limitTextField" destination="KEW-Bd-lWz" id="qqw-oX-sSI"/>
                         <outlet property="titleLabel" destination="SIY-We-EYw" id="hhc-6N-Vtr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="30.163043478260871" y="81.159420289855078"/>
+            <point key="canvasLocation" x="28.985507246376812" y="80.706521739130437"/>
         </scene>
     </scenes>
 </document>

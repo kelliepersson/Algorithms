@@ -54,7 +54,7 @@
 -(void)test_LimitLabel_ShouldBeConnected {
 
     // then
-    assertThat([sut limitLabel], is(notNilValue()));
+    assertThat(sut.limitLabel, is(notNilValue()));
 }
 
 -(void)test_LimitLabel_sOfCorrectType {
@@ -67,13 +67,19 @@
 -(void)test_LimitTextField_ShouldBeConnected {
 
     // then
-    assertThat([sut limitTextField], is(notNilValue()));
+    assertThat(sut.limitTextField, is(notNilValue()));
 }
 
 -(void)test_LimitTextField_IsOfCorrectType {
 
     // then
     assertThat(@([sut.limitTextField isKindOfClass:[UITextField class]]), is(@YES));
+}
+
+-(void)test_LimitTextField_IsUsingNumberPadKeyboard {
+
+    // then
+    assertThat(@(sut.limitTextField.keyboardType), is(@(UIKeyboardTypeNumberPad)));
 }
 
 @end

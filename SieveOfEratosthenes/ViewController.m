@@ -23,7 +23,7 @@ NSString *const LIMIT_LABEL = @"Please enter a number.";
 
     // setup animation
     self.replicator = [[CAReplicatorLayer alloc] init];
-    [self resultsAnimation]; // ->[self calculateAnimation];
+    //[self resultsAnimation]; // ->[self calculateAnimation];
 
     // setup label
     self.limitLabel.text = LIMIT_LABEL;

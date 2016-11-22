@@ -83,7 +83,6 @@ NSString *const LIMIT_LABEL = @"Please enter a number.";
     move.duration = 0.5;
     move.autoreverses = YES;
     move.repeatCount = INFINITY;
-
     [bar addAnimation:move forKey:nil];
 
     self.replicator.instanceCount = 3;
@@ -100,6 +99,7 @@ NSString *const LIMIT_LABEL = @"Please enter a number.";
     [self.view.layer addSublayer:self.replicator];
 
     CALayer *dot = [[CALayer alloc] init];
+    dot.bounds = CGRectMake(0,0,10,10);
     dot.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1].CGColor;
     dot.borderColor = [UIColor colorWithWhite:1 alpha:1].CGColor;
     dot.borderWidth = 1;
@@ -121,17 +121,16 @@ NSString *const LIMIT_LABEL = @"Please enter a number.";
     self.replicator.instanceGreenOffset = -0.03;
 }
 
-//Make these points SMALLER
 -(CGPathRef)star {
 
-    // Star drawing - generated using BezierCode lite
+    //// Star drawing - generated using BezierCode lite
     UIBezierPath *star = [UIBezierPath bezierPath];
-    [star moveToPoint:CGPointMake(317.04, 136.491)];
-    [star addCurveToPoint:CGPointMake(278.279, 255.273) controlPoint1:CGPointMake(246.921, 146.636) controlPoint2:CGPointMake(176.802, 156.781)];
-    [star addCurveToPoint:CGPointMake(379.757, 328.684) controlPoint1:CGPointMake(266.302, 324.809) controlPoint2:CGPointMake(254.324, 394.346)];
-    [star addCurveToPoint:CGPointMake(481.234, 255.273) controlPoint1:CGPointMake(442.473, 361.515) controlPoint2:CGPointMake(505.189, 394.346)];
-    [star addCurveToPoint:CGPointMake(442.473, 136.491) controlPoint1:CGPointMake(531.972, 206.027) controlPoint2:CGPointMake(582.711, 156.781)];
-    [star addCurveToPoint:CGPointMake(317.04, 136.491) controlPoint1:CGPointMake(411.115, 73.225) controlPoint2:CGPointMake(379.757, 9.959)];
+    [star moveToPoint:CGPointMake(23.426, 19.882)];
+    [star addCurveToPoint:CGPointMake(13.297, 52.21) controlPoint1:CGPointMake(5.103, 22.644) controlPoint2:CGPointMake(-13.22, 25.405)];
+    [star addCurveToPoint:CGPointMake(39.814, 72.19) controlPoint1:CGPointMake(10.167, 71.136) controlPoint2:CGPointMake(7.037, 90.061)];
+    [star addCurveToPoint:CGPointMake(66.332, 52.21) controlPoint1:CGPointMake(56.203, 81.126) controlPoint2:CGPointMake(72.592, 90.061)];
+    [star addCurveToPoint:CGPointMake(56.203, 19.882) controlPoint1:CGPointMake(79.591, 38.808) controlPoint2:CGPointMake(92.849, 25.405)];
+    [star addCurveToPoint:CGPointMake(23.426, 19.882) controlPoint1:CGPointMake(48.009, 2.664) controlPoint2:CGPointMake(39.814, -14.555)];
     [star closePath];
 
     CGAffineTransform t = CGAffineTransformMakeScale(3.0, 3.0);

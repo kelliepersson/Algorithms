@@ -21,7 +21,9 @@ NSString *const LIMIT_LABEL = @"Please enter a number.";
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self animation];
+    // setup animation
+    self.replicator = [[CAReplicatorLayer alloc] init];
+    [self resultsAnimation]; // ->[self calculateAnimation];
 
     // setup label
     self.limitLabel.text = LIMIT_LABEL;
@@ -62,9 +64,8 @@ NSString *const LIMIT_LABEL = @"Please enter a number.";
 }
 
 #pragma mark - animation
--(void)animation {
+-(void)calculateAnimation {
 
-    self.replicator = [[CAReplicatorLayer alloc] init];
     self.replicator.bounds = CGRectMake(0, 0, 60, 60);
     self.replicator.position = self.view.center;
     [self.view.layer addSublayer:self.replicator];
@@ -89,6 +90,52 @@ NSString *const LIMIT_LABEL = @"Please enter a number.";
     self.replicator.instanceTransform = CATransform3DMakeTranslation(20, 0, 0);
     self.replicator.instanceDelay = 0.33;
     self.replicator.masksToBounds = YES;
+}
+
+-(void)resultsAnimation {
+
+    self.replicator.bounds = self.view.bounds;
+    self.replicator.backgroundColor = [UIColor colorWithWhite:0 alpha: 0.75].CGColor;
+    self.replicator.position = self.view.center;
+    [self.view.layer addSublayer:self.replicator];
+
+    CALayer *dot = [[CALayer alloc] init];
+    dot.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1].CGColor;
+    dot.borderColor = [UIColor colorWithWhite:1 alpha:1].CGColor;
+    dot.borderWidth = 1;
+    dot.cornerRadius = 5;
+    dot.shouldRasterize = YES;
+    dot.rasterizationScale = [[UIScreen mainScreen] scale];
+    [self.replicator addSublayer:dot];
+
+    CAKeyframeAnimation *move = [[CAKeyframeAnimation alloc] init];
+    move.keyPath = @"position";
+    move.path = [self star];
+    move.repeatCount = INFINITY;
+    move.duration = 4.0;
+    [dot addAnimation:move forKey:nil];
+
+    self.replicator.instanceCount = 20;
+    self.replicator.instanceDelay = 0.1;
+    self.replicator.instanceColor = [UIColor colorWithRed:0 green:1 blue:0 alpha:1].CGColor;
+    self.replicator.instanceGreenOffset = -0.03;
+}
+
+//Make these points SMALLER
+-(CGPathRef)star {
+
+    // Star drawing - generated using BezierCode lite
+    UIBezierPath *star = [UIBezierPath bezierPath];
+    [star moveToPoint:CGPointMake(317.04, 136.491)];
+    [star addCurveToPoint:CGPointMake(278.279, 255.273) controlPoint1:CGPointMake(246.921, 146.636) controlPoint2:CGPointMake(176.802, 156.781)];
+    [star addCurveToPoint:CGPointMake(379.757, 328.684) controlPoint1:CGPointMake(266.302, 324.809) controlPoint2:CGPointMake(254.324, 394.346)];
+    [star addCurveToPoint:CGPointMake(481.234, 255.273) controlPoint1:CGPointMake(442.473, 361.515) controlPoint2:CGPointMake(505.189, 394.346)];
+    [star addCurveToPoint:CGPointMake(442.473, 136.491) controlPoint1:CGPointMake(531.972, 206.027) controlPoint2:CGPointMake(582.711, 156.781)];
+    [star addCurveToPoint:CGPointMake(317.04, 136.491) controlPoint1:CGPointMake(411.115, 73.225) controlPoint2:CGPointMake(379.757, 9.959)];
+    [star closePath];
+
+    CGAffineTransform t = CGAffineTransformMakeScale(3.0, 3.0);
+    return CGPathCreateCopyByTransformingPath(star.CGPath, &t);
 }
 
 #pragma mark - UITextFieldDelegate methods

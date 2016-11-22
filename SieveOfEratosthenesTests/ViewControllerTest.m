@@ -70,7 +70,7 @@
     assertThat(sut.limitTextField, is(notNilValue()));
 }
 
--(void)test_LimitTextField_IsOfCorrectType {
+-(void)test_LimitTextField_IsOfCorrectType {	
 
     // then
     assertThat(@([sut.limitTextField isKindOfClass:[UITextField class]]), is(@YES));

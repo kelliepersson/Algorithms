@@ -9,6 +9,7 @@
 #import "ViewController.h"
 
 NSString *const LIMIT_LABEL = @"Please enter a number.";
+NSString *const TITLE_LABEL = @"Prime Machine";
 
 @interface ViewController ()
 
@@ -23,10 +24,11 @@ NSString *const LIMIT_LABEL = @"Please enter a number.";
 
     // setup animation
     self.replicator = [[CAReplicatorLayer alloc] init];
-    //[self resultsAnimation]; // ->[self calculateAnimation];
+    [self resultsAnimation]; // ->[self calculateAnimation];
 
     // setup label
     self.limitLabel.text = LIMIT_LABEL;
+    self.titleLabel.text = TITLE_LABEL;
 
     // setup keyboard
     UIToolbar *keyboardToolbar = [[UIToolbar alloc] init];
@@ -52,8 +54,11 @@ NSString *const LIMIT_LABEL = @"Please enter a number.";
 
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 
+    [self.replicator removeFromSuperlayer];
+
     [coordinator animateAlongsideTransition:nil completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
-        self.replicator.position = self.view.center;
+
+        [self resultsAnimation];
     }];
 }
 
@@ -93,17 +98,18 @@ NSString *const LIMIT_LABEL = @"Please enter a number.";
 
 -(void)resultsAnimation {
 
-    self.replicator.bounds = self.view.bounds;
-    self.replicator.backgroundColor = [UIColor colorWithWhite:0 alpha: 0.75].CGColor;
-    self.replicator.position = self.view.center;
+    self.replicator.bounds = CGRectMake(0, 0, 0, 0);
+    self.replicator.backgroundColor = [UIColor whiteColor].CGColor;
+    CGPoint rPoint = [self.limitTextField.superview convertPoint:self.limitTextField.frame.origin toView:self.view];
+    self.replicator.position = CGPointMake(rPoint.x, rPoint.y + 35.f);
     [self.view.layer addSublayer:self.replicator];
 
     CALayer *dot = [[CALayer alloc] init];
-    dot.bounds = CGRectMake(0,0,10,10);
+    dot.bounds = CGRectMake(0,0,5,5);
     dot.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1].CGColor;
     dot.borderColor = [UIColor colorWithWhite:1 alpha:1].CGColor;
-    dot.borderWidth = 1;
-    dot.cornerRadius = 5;
+    dot.borderWidth = 0.5;
+    dot.cornerRadius = 2.5;
     dot.shouldRasterize = YES;
     dot.rasterizationScale = [[UIScreen mainScreen] scale];
     [self.replicator addSublayer:dot];
@@ -117,8 +123,8 @@ NSString *const LIMIT_LABEL = @"Please enter a number.";
 
     self.replicator.instanceCount = 20;
     self.replicator.instanceDelay = 0.1;
-    self.replicator.instanceColor = [UIColor colorWithRed:0 green:1 blue:0 alpha:1].CGColor;
-    self.replicator.instanceGreenOffset = -0.03;
+    self.replicator.instanceColor = [UIColor colorWithRed:1 green:0 blue:1 alpha:1].CGColor;
+    self.replicator.instanceBlueOffset = -0.03;
 }
 
 -(CGPathRef)star {
@@ -133,8 +139,7 @@ NSString *const LIMIT_LABEL = @"Please enter a number.";
     [star addCurveToPoint:CGPointMake(23.426, 19.882) controlPoint1:CGPointMake(48.009, 2.664) controlPoint2:CGPointMake(39.814, -14.555)];
     [star closePath];
 
-    CGAffineTransform t = CGAffineTransformMakeScale(3.0, 3.0);
-    return CGPathCreateCopyByTransformingPath(star.CGPath, &t);
+    return CGPathCreateCopy(star.CGPath);
 }
 
 #pragma mark - UITextFieldDelegate methods

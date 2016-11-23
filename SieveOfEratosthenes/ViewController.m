@@ -21,6 +21,7 @@ NSString *const kResults = @"Results";
 @interface ViewController ()
 
 @property (nonatomic, strong) CAReplicatorLayer *replicator;
+@property (nonatomic, strong) CALayer *layer;
 @property (nonatomic, assign) Animation animation;
 
 @end
@@ -43,6 +44,7 @@ NSString *const kResults = @"Results";
 
     // setup animation
     self.replicator = [[CAReplicatorLayer alloc] init];
+    self.layer = [[CALayer alloc] init];
 
     // setup label
     self.titleLabel.text = TITLE_LABEL;
@@ -85,6 +87,7 @@ NSString *const kResults = @"Results";
 #pragma mark - animation
 -(void)calculateAnimation {
 
+    // set animation
     self.animation = Calculate;
 
     self.replicator.bounds = CGRectMake(0, 0, 60, 60);
@@ -95,20 +98,19 @@ NSString *const kResults = @"Results";
     self.replicator.position = CGPointMake(rPoint.x, rPoint.y + 35.f);
     [self.view.layer addSublayer:self.replicator];
 
-    CALayer *bar = [[CALayer alloc] init];
-    bar.bounds = CGRectMake(0, 0, 8, 40);
-    bar.position = CGPointMake(10, 75);
-    bar.cornerRadius = 2;
-    bar.backgroundColor = [UIColor redColor].CGColor;
-    [self.replicator addSublayer:bar];
+    self.layer.bounds = CGRectMake(0, 0, 8, 40);
+    self.layer.position = CGPointMake(10, 75);
+    self.layer.cornerRadius = 2;
+    self.layer.backgroundColor = [UIColor redColor].CGColor;
+    [self.replicator addSublayer:self.layer];
 
     CABasicAnimation *move = [[CABasicAnimation alloc] init];
     move.keyPath = @"position.y";
-    move.toValue = @(bar.position.y - 35);
+    move.toValue = @(self.layer.position.y - 35);
     move.duration = 0.5;
     move.autoreverses = YES;
     move.repeatCount = INFINITY;
-    [bar addAnimation:move forKey:kCalculate];
+    [self.layer addAnimation:move forKey:kCalculate];
 
     self.replicator.instanceCount = 3;
     self.replicator.instanceTransform = CATransform3DMakeTranslation(20, 0, 0);
@@ -118,30 +120,33 @@ NSString *const kResults = @"Results";
 
 -(void)resultsAnimation {
 
+    // set animation
     self.animation = Results;
 
-    CGPoint rPoint = [self.limitTextField.superview convertPoint:self.limitTextField.frame.origin toView:self.view];
     self.replicator.bounds = CGRectMake(0, 0, 0, 0);
+    CGFloat adjustedHeight = self.replicator.bounds.size.height/2;
+    CGFloat adjustedWidth = self.limitTextField.frame.size.width + 35.f;
+    CGPoint endPoint = CGPointMake(self.limitTextField.frame.origin.x + adjustedWidth , self.limitTextField.frame.origin.y - adjustedHeight);
+    CGPoint rPoint = [self.limitTextField.superview convertPoint:endPoint toView:self.view];
     self.replicator.position = CGPointMake(rPoint.x, rPoint.y + 35.f);
     self.replicator.backgroundColor = [UIColor whiteColor].CGColor;
     [self.view.layer addSublayer:self.replicator];
 
-    CALayer *dot = [[CALayer alloc] init];
-    dot.bounds = CGRectMake(0,0,5,5);
-    dot.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1].CGColor;
-    dot.borderColor = [UIColor colorWithWhite:1 alpha:1].CGColor;
-    dot.borderWidth = 0.5;
-    dot.cornerRadius = 2.5;
-    dot.shouldRasterize = YES;
-    dot.rasterizationScale = [[UIScreen mainScreen] scale];
-    [self.replicator addSublayer:dot];
+    self.layer.bounds = CGRectMake(0,0,5,5);
+    self.layer.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1].CGColor;
+    self.layer.borderColor = [UIColor colorWithWhite:1 alpha:1].CGColor;
+    self.layer.borderWidth = 0.5;
+    self.layer.cornerRadius = 2.5;
+    self.layer.shouldRasterize = YES;
+    self.layer.rasterizationScale = [[UIScreen mainScreen] scale];
+    [self.replicator addSublayer:self.layer];
 
     CAKeyframeAnimation *move = [[CAKeyframeAnimation alloc] init];
     move.keyPath = @"position";
     move.path = [self star];
     move.repeatCount = INFINITY;
     move.duration = 4.0;
-    [dot addAnimation:move forKey:kResults];
+    [self.layer addAnimation:move forKey:kResults];
 
     self.replicator.instanceCount = 20;
     self.replicator.instanceDelay = 0.1;
@@ -203,7 +208,8 @@ NSString *const kResults = @"Results";
     // disable findButton
     self.findButton.enabled = NO;
 
-    // start animation
+    // reset animation
+    [self.layer removeAnimationForKey:kResults];
     [self calculateAnimation];
 
     // model call
@@ -239,7 +245,8 @@ NSString *const kResults = @"Results";
         // enable findButton
         self.findButton.enabled = YES;
 
-        // start results animation
+        // reset animation
+        [self.layer removeAnimationForKey:kCalculate];
         [self resultsAnimation];
     };
 }

@@ -14,11 +14,17 @@ extern NSString *const LIMIT_PLACEHOLDER;
 extern NSString *const TITLE_LABEL;
 
 @class ViewControllerModel;
+typedef NS_ENUM(NSInteger, Animation)
+{
+    Calculate = 0,
+    Results
+};
 @interface ViewController : UIViewController<UITextFieldDelegate>
 
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak) IBOutlet UITextField *limitTextField;
 @property (nonatomic, weak) IBOutlet UIButton *findButton;
+
 @property (nonatomic, strong) ViewControllerModel *model;
 
 - (IBAction)findPrimes:(UIButton *)sender;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
+    <device id="ipad9_7" orientation="portrait">
+        <adaptation id="splitview2_3"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -19,11 +19,11 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="438" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prime Machine" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SIY-We-EYw">
-                                <rect key="frame" x="0.0" y="35" width="375" height="55"/>
+                                <rect key="frame" x="0.0" y="35" width="438" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="oAo-zt-J7Q"/>
                                 </constraints>
@@ -31,31 +31,31 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="KEW-Bd-lWz" userLabel="Limit Text Field">
-                                <rect key="frame" x="26" y="110" width="323" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ozU-cF-bi2">
-                                <rect key="frame" x="164.5" y="161" width="46" height="30"/>
+                                <rect key="frame" x="196" y="161" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="findPrimes:" destination="BYZ-38-t0r" eventType="touchUpInside" id="goC-Os-GZV"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="KEW-Bd-lWz" userLabel="Limit Text Field">
+                                <rect key="frame" x="20" y="110" width="338" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="ozU-cF-bi2" firstAttribute="centerX" secondItem="KEW-Bd-lWz" secondAttribute="centerX" id="Ewa-lq-iOw"/>
+                            <constraint firstItem="ozU-cF-bi2" firstAttribute="centerX" secondItem="KEW-Bd-lWz" secondAttribute="centerX" constant="30" id="Ewa-lq-iOw"/>
                             <constraint firstItem="KEW-Bd-lWz" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="90" id="FwE-Sc-4Uo"/>
                             <constraint firstItem="ozU-cF-bi2" firstAttribute="top" secondItem="KEW-Bd-lWz" secondAttribute="bottom" constant="21" id="GRS-Y7-js7"/>
-                            <constraint firstItem="KEW-Bd-lWz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GbJ-Ye-8l9"/>
+                            <constraint firstItem="KEW-Bd-lWz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-30" id="GbJ-Ye-8l9"/>
                             <constraint firstItem="SIY-We-EYw" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="15" id="IS6-se-WKO"/>
                             <constraint firstItem="SIY-We-EYw" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="UbN-3v-yf5"/>
-                            <constraint firstItem="SIY-We-EYw" firstAttribute="centerX" secondItem="KEW-Bd-lWz" secondAttribute="centerX" id="a3j-FE-osh"/>
-                            <constraint firstItem="KEW-Bd-lWz" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="kVh-5B-3Oi"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="KEW-Bd-lWz" secondAttribute="trailing" constant="10" id="qAA-03-VH6"/>
+                            <constraint firstItem="SIY-We-EYw" firstAttribute="centerX" secondItem="KEW-Bd-lWz" secondAttribute="centerX" constant="30" id="a3j-FE-osh"/>
+                            <constraint firstItem="KEW-Bd-lWz" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="kVh-5B-3Oi"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="KEW-Bd-lWz" secondAttribute="trailing" constant="60" id="qAA-03-VH6"/>
                         </constraints>
                     </view>
                     <connections>
@@ -66,7 +66,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="28.985507246376812" y="80.706521739130437"/>
+            <point key="canvasLocation" x="26.027397260273972" y="76.7578125"/>
         </scene>
     </scenes>
 </document>

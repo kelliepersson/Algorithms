@@ -18,7 +18,8 @@ NSString *const TITLE_LABEL = @"Prime Time";
 
 @interface ViewController ()
 
-@property (strong, nonatomic) CAReplicatorLayer *replicator;
+@property (nonatomic, strong) CAReplicatorLayer *replicator;
+@property (nonatomic, assign) Animation animation;
 
 @end
 
@@ -70,25 +71,23 @@ NSString *const TITLE_LABEL = @"Prime Time";
 
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 
-    [self.replicator removeFromSuperlayer];
+    [self stopAnimation];
 
     [coordinator animateAlongsideTransition:nil completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
 
-        [self resultsAnimation];
+        [self startAnimation];
     }];
-}
-
-// Called when phone keyboard is invoked from textfield
-- (void)done {
-
-    [self.limitTextField resignFirstResponder];
 }
 
 #pragma mark - animation
 -(void)calculateAnimation {
 
     self.replicator.bounds = CGRectMake(0, 0, 60, 60);
-    self.replicator.position = self.view.center;
+    CGFloat adjustedHeight = self.replicator.bounds.size.height/2;
+    CGFloat adjustedWidth = self.limitTextField.frame.size.width + 35.f;
+    CGPoint endPoint = CGPointMake(self.limitTextField.frame.origin.x + adjustedWidth , self.limitTextField.frame.origin.y - adjustedHeight);
+    CGPoint rPoint = [self.limitTextField.superview convertPoint:endPoint toView:self.view];
+    self.replicator.position = CGPointMake(rPoint.x, rPoint.y + 35.f);
     [self.view.layer addSublayer:self.replicator];
 
     CALayer *bar = [[CALayer alloc] init];
@@ -114,10 +113,10 @@ NSString *const TITLE_LABEL = @"Prime Time";
 
 -(void)resultsAnimation {
 
-    self.replicator.bounds = CGRectMake(0, 0, 0, 0);
-    self.replicator.backgroundColor = [UIColor whiteColor].CGColor;
     CGPoint rPoint = [self.limitTextField.superview convertPoint:self.limitTextField.frame.origin toView:self.view];
+    self.replicator.bounds = CGRectMake(0, 0, 0, 0);
     self.replicator.position = CGPointMake(rPoint.x, rPoint.y + 35.f);
+    self.replicator.backgroundColor = [UIColor whiteColor].CGColor;
     [self.view.layer addSublayer:self.replicator];
 
     CALayer *dot = [[CALayer alloc] init];
@@ -194,6 +193,9 @@ NSString *const TITLE_LABEL = @"Prime Time";
 #pragma mark - action methods
 - (IBAction)findPrimes:(UIButton *)sender {
 
+    // set animation type
+    self.animation = Calculate;
+
     // start animation
     [self calculateAnimation];
 
@@ -227,13 +229,38 @@ NSString *const TITLE_LABEL = @"Prime Time";
 -(didGetPrimesDataBlock)modelDidGetPrimesData {
     return ^(NSArray<NSNumber *>*primes) {
 
+        // set animation
+        self.animation = Results;
+
         // stop running annomations
-        for (NSInteger i = self.replicator.sublayers.count - 1; i >= 0; i--) {
-            [[self.replicator.sublayers objectAtIndex:i] removeFromSuperlayer];
-        };
+        [self stopAnimation];
 
         // start results animation
         [self resultsAnimation];
     };
 }
+
+#pragma mark - helper method(s)
+// Called when phone keyboard is invoked from textfield
+- (void)done {
+
+    [self.limitTextField resignFirstResponder];
+}
+
+-(void)startAnimation {
+
+    // current animation is calculate
+    if(self.animation == Calculate) [self calculateAnimation];
+
+    // current animation is results
+    else if (self.animation == Results) [self resultsAnimation];
+}
+
+-(void)stopAnimation {
+
+    for (NSInteger i = self.replicator.sublayers.count - 1; i >= 0; i--) {
+        [[self.replicator.sublayers objectAtIndex:i] removeFromSuperlayer];
+    };
+}
+
 @end

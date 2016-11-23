@@ -22,7 +22,7 @@ typedef NS_ENUM(NSInteger, Animation)
     Calculate = 0,
     Results
 };
-@interface ViewController : UIViewController<UITextFieldDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
+@interface ViewController : UIViewController<UITextFieldDelegate, UICollectionViewDelegate, UICollectionViewDataSource, CALayerDelegate>
 
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak) IBOutlet UITextField *limitTextField;

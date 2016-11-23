@@ -203,6 +203,11 @@ NSString *const kResults = @"Results";
     return star.CGPath;
 }
 
+- (void)animationDidStop:(CAAnimation *)theAnimation finished:(BOOL)flag
+{
+    NSLog(@"Animation interrupted: %@", (!flag)?@"Yes" : @"No");
+}
+
 #pragma mark - UITextFieldDelegate methods
 // Dismisses keyboard when touching outside the keyboard
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -239,8 +244,8 @@ NSString *const kResults = @"Results";
 #pragma mark - action methods
 - (IBAction)findPrimes:(UIButton *)sender {
 
-    // disable findButton
-    self.findButton.enabled = NO;
+    // hide findButton
+    self.findButton.hidden = YES;
 
     // reset animation
     [self.layer removeAnimationForKey:kResults];
@@ -276,11 +281,11 @@ NSString *const kResults = @"Results";
 -(didGetPrimesDataBlock)modelDidGetPrimesData {
     return ^(NSArray<NSNumber *>*primes) {
 
-        // enable findButton
-        self.findButton.enabled = YES;
+        // display findButton
+        self.findButton.hidden = NO;
 
         // reset animation
-        //[self.layer removeAnimationForKey:kCalculate];
+        [self.layer removeAnimationForKey:kCalculate];
         //[self resultsAnimation];
 
         // setup primes

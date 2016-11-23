@@ -8,11 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void(^didGetPrimesDataBlock)(NSArray *primes);
 @interface ViewControllerModel : NSObject
 
-@property (nonatomic, copy) didGetPrimesDataBlock didGetPrimesData;
-
--(void)retrievePrimes:(NSInteger)limit;
+-(void)retrievePrimes:(NSInteger)limit complete:(void(^)(NSArray<NSNumber *>*))complete;
 
 @end

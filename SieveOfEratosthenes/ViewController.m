@@ -8,9 +8,6 @@
 
 #import "ViewController.h"
 
-// Collaborators
-#import "ViewControllerModel.h"
-
 NSInteger const LIMIT_MAX = 1000000;
 NSString *const FIND_BUTTON = @"FIND";
 NSString *const LIMIT_PLACEHOLDER = @"ENTER LIMIT (BETWEEN 1-1000000)";
@@ -198,7 +195,17 @@ NSString *const TITLE_LABEL = @"Prime Time";
     [self calculateAnimation];
 
     // model call
-    [self.model retrievePrimes:[self.limitTextField.text integerValue]];
+    [self.model retrievePrimes:[self.limitTextField.text integerValue]
+     complete:^(NSArray<NSNumber *> *primes) {
+
+         // stop running annomations
+         for (NSInteger i = self.replicator.sublayers.count - 1; i >= 0; i--) {
+             [[self.replicator.sublayers objectAtIndex:i] removeFromSuperlayer];
+         };
+
+         // start results animation
+         [self resultsAnimation];
+     }];
 }
 
 -( BOOL)validateLimit:(NSString *)textfield range:(NSRange)range replacement:(NSString *)string {
@@ -219,21 +226,5 @@ NSString *const TITLE_LABEL = @"Prime Time";
     // no complaints, string is valid number
     return [[textfield stringByAppendingString:string] integerValue] <= LIMIT_MAX;
 }
-
--(void)bindToModel {
-    self.model.didGetPrimesData = [self modelDidGetPrimesData];
-}
-
--(didGetPrimesDataBlock)modelDidGetPrimesData {
-    return ^(NSArray *primes) {
-
-        // stop calculation animation
-        [self.replicator removeFromSuperlayer];
-
-        // start results animation
-        [self resultsAnimation];
-    };
-}
-
 
 @end

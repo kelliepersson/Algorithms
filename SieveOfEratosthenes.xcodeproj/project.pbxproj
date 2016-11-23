@@ -89,12 +89,12 @@
 			name = ViewModel;
 			sourceTree = "<group>";
 		};
-		1EBCD8C21DE0A08C00CBEABA /* Common */ = {
+		1EBCD8C21DE0A08C00CBEABA /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				1ECCAAB21DDE77A7009B1104 /* PrimeTest.m */,
 			);
-			name = Common;
+			name = Model;
 			sourceTree = "<group>";
 		};
 		1EBCD8C31DE0A2BA00CBEABA /* Controller */ = {
@@ -153,7 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				1EBCD8C31DE0A2BA00CBEABA /* Controller */,
-				1EBCD8C21DE0A08C00CBEABA /* Common */,
+				1EBCD8C21DE0A08C00CBEABA /* Model */,
 				1ECCAAB41DDE77A7009B1104 /* Info.plist */,
 			);
 			path = SieveOfEratosthenesTests;
@@ -547,6 +547,7 @@
 			baseConfigurationReference = 0E825B892581DC1793DFEA8A /* Pods-SieveOfEratosthenes.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULE_DEBUGGING = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = LE3Y88K938;
 				INFOPLIST_FILE = SieveOfEratosthenes/Info.plist;
@@ -561,6 +562,7 @@
 			baseConfigurationReference = 81A8795E17E29D8D7028B16A /* Pods-SieveOfEratosthenes.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULE_DEBUGGING = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = LE3Y88K938;
 				INFOPLIST_FILE = SieveOfEratosthenes/Info.plist;

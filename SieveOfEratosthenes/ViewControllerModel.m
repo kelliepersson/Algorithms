@@ -13,22 +13,17 @@
 
 @implementation ViewControllerModel
 
--(void)sendPrimes:(NSArray *)primes {
-    if (self.didGetPrimesData) {
-
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.didGetPrimesData(primes);
-        });
-    }
-}
-
--(void)retrievePrimes:(NSInteger)limit {
+-(void)retrievePrimes:(NSInteger)limit complete:(void(^)(NSArray<NSNumber *>*))complete {
 
     // Alloc user
     Prime *prime = [[Prime alloc] initWithLimit:limit];
 
-    // Raise didGetDeregisterAlert
-    [self sendPrimes:[prime sieve2]];
+    // Handle the result on the main thread
+    dispatch_async(dispatch_get_main_queue(), ^{
+
+        // Raise didGetPrimesData
+        complete([[prime sieve2] copy]);
+    });
 }
 
 @end

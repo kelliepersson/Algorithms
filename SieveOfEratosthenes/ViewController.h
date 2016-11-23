@@ -8,14 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-// Collaborator
-#import "ViewControllerModel.h"
-
 extern NSInteger const LIMIT_MAX;
 extern NSString *const FIND_BUTTON;
 extern NSString *const LIMIT_PLACEHOLDER;
 extern NSString *const TITLE_LABEL;
 
+@class ViewControllerModel;
 @interface ViewController : UIViewController<UITextFieldDelegate>
 
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
@@ -25,6 +23,7 @@ extern NSString *const TITLE_LABEL;
 
 - (IBAction)findPrimes:(UIButton *)sender;
 - (BOOL)validateLimit:(NSString *)textfield range:(NSRange)range replacement:(NSString *)string;
+- (void)bindToModel;
 
 @end
 

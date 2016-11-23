@@ -1,0 +1,16 @@
+PODS:
+  - OCHamcrest (5.4.0)
+  - OCMockito (3.0.2):
+    - OCHamcrest (~> 5.1)
+
+DEPENDENCIES:
+  - OCHamcrest (~> 5.4)
+  - OCMockito (~> 3.0)
+
+SPEC CHECKSUMS:
+  OCHamcrest: 5c1d441c5a82fb18ac17c2aeb52ec1a99edb971b
+  OCMockito: 2cb6c2267cbc76537be56281cd47cdb5a7c27541
+
+PODFILE CHECKSUM: c7c969b8ac9ded635bef2bf8260261c346b2a7e3
+
+COCOAPODS: 1.2.0.beta.1

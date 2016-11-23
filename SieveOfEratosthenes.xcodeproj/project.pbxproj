@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E24CF5C1DE541BB005826B5 /* ViewControllerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E24CF5B1DE541BB005826B5 /* ViewControllerManager.m */; };
 		1E9A74ED1DE5172D002484E2 /* ViewControllerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9A74EC1DE5172D002484E2 /* ViewControllerModel.m */; };
 		1EBCD8C51DE0A2DD00CBEABA /* ViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EBCD8C41DE0A2DD00CBEABA /* ViewControllerTest.m */; };
 		1ECCAA971DDE77A7009B1104 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ECCAA961DDE77A7009B1104 /* main.m */; };
@@ -34,6 +35,8 @@
 
 /* Begin PBXFileReference section */
 		0E825B892581DC1793DFEA8A /* Pods-SieveOfEratosthenes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SieveOfEratosthenes.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SieveOfEratosthenes/Pods-SieveOfEratosthenes.debug.xcconfig"; sourceTree = "<group>"; };
+		1E24CF5A1DE541BB005826B5 /* ViewControllerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerManager.h; sourceTree = "<group>"; };
+		1E24CF5B1DE541BB005826B5 /* ViewControllerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerManager.m; sourceTree = "<group>"; };
 		1E9A74EB1DE5171D002484E2 /* ViewControllerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerModel.h; sourceTree = "<group>"; };
 		1E9A74EC1DE5172D002484E2 /* ViewControllerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerModel.m; sourceTree = "<group>"; };
 		1EBCD8C41DE0A2DD00CBEABA /* ViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerTest.m; sourceTree = "<group>"; };
@@ -85,6 +88,8 @@
 			children = (
 				1E9A74EB1DE5171D002484E2 /* ViewControllerModel.h */,
 				1E9A74EC1DE5172D002484E2 /* ViewControllerModel.m */,
+				1E24CF5A1DE541BB005826B5 /* ViewControllerManager.h */,
+				1E24CF5B1DE541BB005826B5 /* ViewControllerManager.m */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -404,6 +409,7 @@
 			files = (
 				1ECCAAA31DDE77A7009B1104 /* SieveOfEratosthenes.xcdatamodeld in Sources */,
 				1ECCAA9D1DDE77A7009B1104 /* ViewController.m in Sources */,
+				1E24CF5C1DE541BB005826B5 /* ViewControllerManager.m in Sources */,
 				1ECCAA9A1DDE77A7009B1104 /* AppDelegate.m in Sources */,
 				1ECCAABF1DDE81B0009B1104 /* Prime.m in Sources */,
 				1ECCAA971DDE77A7009B1104 /* main.m in Sources */,

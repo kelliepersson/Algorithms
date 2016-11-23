@@ -9,29 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SieveOfEratosthenes/ViewController.m"
-            timestampString = "501557532.935521"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "199"
-            endingLineNumber = "199"
-            landmarkName = "-findPrimes:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "SieveOfEratosthenes/ViewControllerModel.m"
-            timestampString = "501557989.007356"
+            timestampString = "501565453.437872"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
-            landmarkName = "-retrievePrimes:complete:"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "-retrievePrimes:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -42,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SieveOfEratosthenes/ViewController.m"
-            timestampString = "501557511.348938"
+            timestampString = "501565453.437872"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "201"
-            endingLineNumber = "201"
-            landmarkName = "-findPrimes:"
+            startingLineNumber = "230"
+            endingLineNumber = "230"
+            landmarkName = "-modelDidGetPrimesData"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

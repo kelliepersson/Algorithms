@@ -9,21 +9,40 @@
 #import "ViewControllerModel.h"
 
 // Collaborators
-#import "Prime.h"
+#import "ViewControllerManager.h"
+
+@interface ViewControllerModel()
+
+@property (nonatomic, strong) ViewControllerManager *manager;
+
+@end
 
 @implementation ViewControllerModel
 
--(void)retrievePrimes:(NSInteger)limit complete:(void(^)(NSArray<NSNumber *>*))complete {
+-(ViewControllerManager *)manager {
 
-    // Alloc user
-    Prime *prime = [[Prime alloc] initWithLimit:limit];
+    if(!_manager)
+        _manager = [[ViewControllerManager alloc] init];
 
-    // Handle the result on the main thread
-    dispatch_async(dispatch_get_main_queue(), ^{
+    return _manager;
+}
 
-        // Raise didGetPrimesData
-        complete([[prime sieve2] copy]);
-    });
+-(void)sendPrimes:(NSArray *)primes {
+    if (self.didGetPrimesData) {
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.didGetPrimesData(primes);
+        });
+    }
+}
+
+-(void)retrievePrimes:(NSInteger)limit {
+
+    [self.manager retrievePrimes:limit complete:^(NSArray<NSNumber *>*primes) {
+
+            // Raise didGetDeregisterAlert
+            [self sendPrimes:primes];
+    }];
 }
 
 @end

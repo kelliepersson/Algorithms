@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>OCHamcrest.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>OCMockito.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-SieveOfEratosthenes.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-SieveOfEratosthenesTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>2A023507EAD85F40065A236BE2F30BD4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2CD7260628B82A57E5CEB6D520EF27A6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8FF81716DA5A4B4C9C6FAF0C2014998D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B8183283B5B117F1EA8B277A8F2D9939</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

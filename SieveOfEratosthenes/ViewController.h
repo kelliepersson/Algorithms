@@ -13,14 +13,17 @@ extern NSString *const FIND_BUTTON;
 extern NSString *const LIMIT_PLACEHOLDER;
 extern NSString *const TITLE_LABEL;
 
+@class ViewControllerModel;
 @interface ViewController : UIViewController<UITextFieldDelegate>
 
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UITextField *limitTextField;
-@property (weak, nonatomic) IBOutlet UIButton *findButton;
+@property (nonatomic, weak) IBOutlet UILabel *titleLabel;
+@property (nonatomic, weak) IBOutlet UITextField *limitTextField;
+@property (nonatomic, weak) IBOutlet UIButton *findButton;
+@property (nonatomic, strong) ViewControllerModel *model;
 
 - (IBAction)findPrimes:(UIButton *)sender;
--(BOOL)validateLimit:(NSString *)textfield range:(NSRange)range replacement:(NSString *)string;
+- (BOOL)validateLimit:(NSString *)textfield range:(NSRange)range replacement:(NSString *)string;
+- (void)bindToModel;
 
 @end
 

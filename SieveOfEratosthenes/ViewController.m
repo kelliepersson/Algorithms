@@ -8,6 +8,9 @@
 
 #import "ViewController.h"
 
+// Collaborators
+#import "ViewControllerModel.h"
+
 NSInteger const LIMIT_MAX = 1000000;
 NSString *const FIND_BUTTON = @"FIND";
 NSString *const LIMIT_PLACEHOLDER = @"ENTER LIMIT (BETWEEN 1-1000000)";
@@ -21,18 +24,26 @@ NSString *const TITLE_LABEL = @"Prime Time";
 
 @implementation ViewController
 
+-(ViewControllerModel *)model {
+
+    if(!_model)
+        _model = [[ViewControllerModel alloc] init];
+
+    return _model;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     // setup animation
     self.replicator = [[CAReplicatorLayer alloc] init];
-    [self resultsAnimation]; // ->[self calculateAnimation];
 
     // setup label
     self.titleLabel.text = TITLE_LABEL;
 
     // setup button
     [self.findButton setTitle:FIND_BUTTON forState:UIControlStateNormal];
+    self.findButton.enabled = NO;
 
     // setup keyboard
     UIToolbar *keyboardToolbar = [[UIToolbar alloc] init];
@@ -157,11 +168,14 @@ NSString *const TITLE_LABEL = @"Prime Time";
 // Called when the text field becomes active
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
 
+    // disable findButton
+    self.findButton.enabled = NO;
 }
 
 // Called when the text field becomes inactive
 - (void)textFieldDidEndEditing:(UITextField *)textField {
 
+    if((int)self.limitTextField.text.length >= 0) self.findButton.enabled = YES;
 }
 
 /* Called each time the user types a character on the keyboard;
@@ -177,11 +191,17 @@ NSString *const TITLE_LABEL = @"Prime Time";
     return YES;
 }
 
-#pragma mark - helper methods
+#pragma mark - action methods
 - (IBAction)findPrimes:(UIButton *)sender {
+
+    // start animation
+    [self calculateAnimation];
+
+    // model call
+    [self.model retrievePrimes:[self.limitTextField.text integerValue]];
 }
 
--(BOOL)validateLimit:(NSString *)textfield range:(NSRange)range replacement:(NSString *)string {
+-( BOOL)validateLimit:(NSString *)textfield range:(NSRange)range replacement:(NSString *)string {
 
     // empty string is not valid
     if (!string.length && range.length <= 0) return NO;
@@ -199,5 +219,21 @@ NSString *const TITLE_LABEL = @"Prime Time";
     // no complaints, string is valid number
     return [[textfield stringByAppendingString:string] integerValue] <= LIMIT_MAX;
 }
+
+-(void)bindToModel {
+    self.model.didGetPrimesData = [self modelDidGetPrimesData];
+}
+
+-(didGetPrimesDataBlock)modelDidGetPrimesData {
+    return ^(NSArray *primes) {
+
+        // stop calculation animation
+        [self.replicator removeFromSuperlayer];
+
+        // start results animation
+        [self resultsAnimation];
+    };
+}
+
 
 @end

@@ -157,28 +157,25 @@ NSString *const kResults = @"Results";
     // set animation
     self.animation = Results;
 
-    self.replicator.bounds = CGRectMake(0, 0, 0, 0);
-    CGFloat adjustedHeight = self.replicator.bounds.size.height/2;
-    CGFloat adjustedWidth = self.limitTextField.frame.size.width + 35.f;
-    CGPoint endPoint = CGPointMake(self.limitTextField.frame.origin.x + adjustedWidth , self.limitTextField.frame.origin.y - adjustedHeight);
-    CGPoint rPoint = [self.limitTextField.superview convertPoint:endPoint toView:self.view];
-    self.replicator.position = CGPointMake(rPoint.x, rPoint.y + 35.f);
-    self.replicator.backgroundColor = [UIColor whiteColor].CGColor;
+    self.replicator.bounds = self.view.bounds;
+    self.replicator.backgroundColor = [UIColor colorWithWhite:0 alpha:0.75].CGColor;
+    self.replicator.position = self.view.center;
     [self.view.layer addSublayer:self.replicator];
 
-    self.layer.bounds = CGRectMake(0,0,5,5);
+    self.layer.bounds = CGRectMake(0,0,10.f,10.f);
     self.layer.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1].CGColor;
     self.layer.borderColor = [UIColor colorWithWhite:1 alpha:1].CGColor;
-    self.layer.borderWidth = 0.5;
-    self.layer.cornerRadius = 2.5;
+    self.layer.borderWidth = 1.f;
+    self.layer.cornerRadius = 5.f;
     self.layer.shouldRasterize = YES;
     self.layer.rasterizationScale = [[UIScreen mainScreen] scale];
     [self.replicator addSublayer:self.layer];
 
     CAKeyframeAnimation *move = [[CAKeyframeAnimation alloc] init];
+    move.delegate = self;
     move.keyPath = @"position";
     move.path = [self star];
-    move.repeatCount = INFINITY;
+    move.repeatCount = 2;
     move.duration = 4.0;
     [self.layer addAnimation:move forKey:kResults];
 
@@ -203,9 +200,10 @@ NSString *const kResults = @"Results";
     return star.CGPath;
 }
 
-- (void)animationDidStop:(CAAnimation *)theAnimation finished:(BOOL)flag
+#pragma mark - CAAnimationDelegate methods
+- (void)animationDidStop:(CAAnimation *)animation finished:(BOOL)flag
 {
-    NSLog(@"Animation interrupted: %@", (!flag)?@"Yes" : @"No");
+    if(flag) [self.collectionView reloadData];
 }
 
 #pragma mark - UITextFieldDelegate methods
@@ -247,8 +245,7 @@ NSString *const kResults = @"Results";
     // hide findButton
     self.findButton.hidden = YES;
 
-    // reset animation
-    [self.layer removeAnimationForKey:kResults];
+    // set animation
     [self calculateAnimation];
 
     // model call
@@ -284,15 +281,11 @@ NSString *const kResults = @"Results";
         // display findButton
         self.findButton.hidden = NO;
 
-        // reset animation
-        [self.layer removeAnimationForKey:kCalculate];
-        //[self resultsAnimation];
+        // set animation
+        [self resultsAnimation];
 
         // setup primes
         self.primes = [primes copy];
-
-        // reload data
-        [self.collectionView reloadData];
     };
 }
 

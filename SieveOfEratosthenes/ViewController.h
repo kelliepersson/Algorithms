@@ -19,10 +19,11 @@ extern NSString *const kResults;
 @class ViewControllerModel;
 typedef NS_ENUM(NSInteger, Animation)
 {
-    Calculate = 0,
+    None = 0,
+    Calculate,
     Results
 };
-@interface ViewController : UIViewController<UITextFieldDelegate, UICollectionViewDelegate, UICollectionViewDataSource, CALayerDelegate>
+@interface ViewController : UIViewController<UITextFieldDelegate, UICollectionViewDelegate, UICollectionViewDataSource, CAAnimationDelegate>
 
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak) IBOutlet UITextField *limitTextField;

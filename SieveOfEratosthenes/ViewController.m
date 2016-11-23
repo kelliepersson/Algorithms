@@ -124,10 +124,11 @@ NSString *const kResults = @"Results";
     // set animation
     self.animation = Calculate;
 
+    self.replicator = [[CAReplicatorLayer alloc] init];
     self.replicator.bounds = CGRectMake(0, 0, 60, 60);
     CGFloat adjustedHeight = self.replicator.bounds.size.height/2;
     CGFloat adjustedWidth = self.limitTextField.frame.size.width + 35.f;
-    CGPoint endPoint = CGPointMake(self.limitTextField.frame.origin.x + adjustedWidth , self.limitTextField.frame.origin.y - adjustedHeight);
+    CGPoint endPoint = CGPointMake(self.limitTextField.frame.origin.x + adjustedWidth, self.limitTextField.frame.origin.y - adjustedHeight);
     CGPoint rPoint = [self.limitTextField.superview convertPoint:endPoint toView:self.view];
     self.replicator.position = CGPointMake(rPoint.x, rPoint.y + 35.f);
     [self.view.layer addSublayer:self.replicator];
@@ -157,9 +158,13 @@ NSString *const kResults = @"Results";
     // set animation
     self.animation = Results;
 
-    self.replicator.bounds = self.view.bounds;
+    self.replicator = [[CAReplicatorLayer alloc] init];
+    CGFloat adjustedWidth = self.view.frame.size.width/4;
+    CGFloat adjustedHeight = self.view.frame.size.height/2;
+    CGPoint endPoint = CGPointMake(adjustedWidth, adjustedHeight);
+    CGPoint rPoint = [self.view convertPoint:endPoint toView:self.view];
+    self.replicator.position = CGPointMake(rPoint.x, rPoint.y);
     self.replicator.backgroundColor = [UIColor colorWithWhite:0 alpha:0.75].CGColor;
-    self.replicator.position = self.view.center;
     [self.view.layer addSublayer:self.replicator];
 
     self.layer.bounds = CGRectMake(0,0,10.f,10.f);
@@ -175,7 +180,7 @@ NSString *const kResults = @"Results";
     move.delegate = self;
     move.keyPath = @"position";
     move.path = [self star];
-    move.repeatCount = 2;
+    move.repeatCount = INFINITY;
     move.duration = 4.0;
     [self.layer addAnimation:move forKey:kResults];
 
@@ -197,13 +202,20 @@ NSString *const kResults = @"Results";
     [star addCurveToPoint:CGPointMake(23.426, 19.882) controlPoint1:CGPointMake(48.009, 2.664) controlPoint2:CGPointMake(39.814, -14.555)];
     [star closePath];
 
+    CGAffineTransform transform = CGAffineTransformMakeScale(3.0, 3.0);
+    [star applyTransform:transform];
+
     return star.CGPath;
 }
 
 #pragma mark - CAAnimationDelegate methods
 - (void)animationDidStop:(CAAnimation *)animation finished:(BOOL)flag
 {
-    if(flag) [self.collectionView reloadData];
+    // remove animations
+    self.animation = None;
+
+    // load prime grid
+    [self.collectionView reloadData];
 }
 
 #pragma mark - UITextFieldDelegate methods
@@ -297,6 +309,9 @@ NSString *const kResults = @"Results";
 }
 
 -(void)startAnimation {
+
+    // remove current running animations
+    [self.layer removeAllAnimations];
 
     // current animation is calculate
     if(self.animation == Calculate) [self calculateAnimation];

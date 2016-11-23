@@ -36,6 +36,9 @@ NSString *const TITLE_LABEL = @"Prime Time";
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    // setup model
+    [self bindToModel];
+
     // setup animation
     self.replicator = [[CAReplicatorLayer alloc] init];
 
@@ -193,6 +196,9 @@ NSString *const TITLE_LABEL = @"Prime Time";
 #pragma mark - action methods
 - (IBAction)findPrimes:(UIButton *)sender {
 
+    // disable findButton
+    self.findButton.enabled = NO;
+
     // set animation type
     self.animation = Calculate;
 
@@ -228,6 +234,9 @@ NSString *const TITLE_LABEL = @"Prime Time";
 
 -(didGetPrimesDataBlock)modelDidGetPrimesData {
     return ^(NSArray<NSNumber *>*primes) {
+
+        // enable findButton
+        self.findButton.enabled = YES;
 
         // set animation
         self.animation = Results;

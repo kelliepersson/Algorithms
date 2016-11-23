@@ -26,27 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SieveOfEratosthenes/ViewController.m"
-            timestampString = "501568787.732382"
+            timestampString = "501570109.754152"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "235"
-            endingLineNumber = "235"
-            landmarkName = "-modelDidGetPrimesData"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SieveOfEratosthenes/ViewController.m"
-            timestampString = "501568787.732382"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "200"
-            endingLineNumber = "200"
+            startingLineNumber = "206"
+            endingLineNumber = "206"
             landmarkName = "-findPrimes:"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,12 +42,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SieveOfEratosthenes/ViewController.m"
-            timestampString = "501568787.732382"
+            timestampString = "501570109.754152"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "261"
-            endingLineNumber = "261"
-            landmarkName = "-stopAnimation"
+            startingLineNumber = "245"
+            endingLineNumber = "245"
+            landmarkName = "-modelDidGetPrimesData"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SieveOfEratosthenes/ViewController.m"
+            timestampString = "501570109.754152"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "239"
+            endingLineNumber = "239"
+            landmarkName = "-modelDidGetPrimesData"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

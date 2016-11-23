@@ -15,6 +15,8 @@ NSInteger const LIMIT_MAX = 1000000;
 NSString *const FIND_BUTTON = @"FIND";
 NSString *const LIMIT_PLACEHOLDER = @"ENTER LIMIT (BETWEEN 1-1000000)";
 NSString *const TITLE_LABEL = @"Prime Time";
+NSString *const kCalculate = @"Calculate";
+NSString *const kResults = @"Results";
 
 @interface ViewController ()
 
@@ -74,8 +76,6 @@ NSString *const TITLE_LABEL = @"Prime Time";
 
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 
-    [self stopAnimation];
-
     [coordinator animateAlongsideTransition:nil completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
 
         [self startAnimation];
@@ -84,6 +84,8 @@ NSString *const TITLE_LABEL = @"Prime Time";
 
 #pragma mark - animation
 -(void)calculateAnimation {
+
+    self.animation = Calculate;
 
     self.replicator.bounds = CGRectMake(0, 0, 60, 60);
     CGFloat adjustedHeight = self.replicator.bounds.size.height/2;
@@ -106,7 +108,7 @@ NSString *const TITLE_LABEL = @"Prime Time";
     move.duration = 0.5;
     move.autoreverses = YES;
     move.repeatCount = INFINITY;
-    [bar addAnimation:move forKey:nil];
+    [bar addAnimation:move forKey:kCalculate];
 
     self.replicator.instanceCount = 3;
     self.replicator.instanceTransform = CATransform3DMakeTranslation(20, 0, 0);
@@ -115,6 +117,8 @@ NSString *const TITLE_LABEL = @"Prime Time";
 }
 
 -(void)resultsAnimation {
+
+    self.animation = Results;
 
     CGPoint rPoint = [self.limitTextField.superview convertPoint:self.limitTextField.frame.origin toView:self.view];
     self.replicator.bounds = CGRectMake(0, 0, 0, 0);
@@ -137,7 +141,7 @@ NSString *const TITLE_LABEL = @"Prime Time";
     move.path = [self star];
     move.repeatCount = INFINITY;
     move.duration = 4.0;
-    [dot addAnimation:move forKey:nil];
+    [dot addAnimation:move forKey:kResults];
 
     self.replicator.instanceCount = 20;
     self.replicator.instanceDelay = 0.1;
@@ -199,9 +203,6 @@ NSString *const TITLE_LABEL = @"Prime Time";
     // disable findButton
     self.findButton.enabled = NO;
 
-    // set animation type
-    self.animation = Calculate;
-
     // start animation
     [self calculateAnimation];
 
@@ -238,12 +239,6 @@ NSString *const TITLE_LABEL = @"Prime Time";
         // enable findButton
         self.findButton.enabled = YES;
 
-        // set animation
-        self.animation = Results;
-
-        // stop running annomations
-        [self stopAnimation];
-
         // start results animation
         [self resultsAnimation];
     };
@@ -263,13 +258,6 @@ NSString *const TITLE_LABEL = @"Prime Time";
 
     // current animation is results
     else if (self.animation == Results) [self resultsAnimation];
-}
-
--(void)stopAnimation {
-
-    for (NSInteger i = self.replicator.sublayers.count - 1; i >= 0; i--) {
-        [[self.replicator.sublayers objectAtIndex:i] removeFromSuperlayer];
-    };
 }
 
 @end

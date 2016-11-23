@@ -12,6 +12,8 @@ extern NSInteger const LIMIT_MAX;
 extern NSString *const FIND_BUTTON;
 extern NSString *const LIMIT_PLACEHOLDER;
 extern NSString *const TITLE_LABEL;
+extern NSString *const kCalculate;
+extern NSString *const kResults;
 
 @class ViewControllerModel;
 typedef NS_ENUM(NSInteger, Animation)

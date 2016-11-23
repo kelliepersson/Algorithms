@@ -158,20 +158,20 @@ NSString *const kResults = @"Results";
     // set animation
     self.animation = Results;
 
-    self.replicator = [[CAReplicatorLayer alloc] init];
-    CGFloat adjustedWidth = self.view.frame.size.width/4;
-    CGFloat adjustedHeight = self.view.frame.size.height/2;
-    CGPoint endPoint = CGPointMake(adjustedWidth, adjustedHeight);
-    CGPoint rPoint = [self.view convertPoint:endPoint toView:self.view];
-    self.replicator.position = CGPointMake(rPoint.x, rPoint.y);
-    self.replicator.backgroundColor = [UIColor colorWithWhite:0 alpha:0.75].CGColor;
+    self.replicator.bounds = CGRectMake(0, 0, 0, 0);
+    CGFloat adjustedHeight = self.replicator.bounds.size.height/2;
+    CGFloat adjustedWidth = self.limitTextField.frame.size.width + 35.f;
+    CGPoint endPoint = CGPointMake(self.limitTextField.frame.origin.x + adjustedWidth , self.limitTextField.frame.origin.y - adjustedHeight);
+    CGPoint rPoint = [self.limitTextField.superview convertPoint:endPoint toView:self.view];
+    self.replicator.position = CGPointMake(rPoint.x, rPoint.y + 35.f);
+    self.replicator.backgroundColor = [UIColor whiteColor].CGColor;
     [self.view.layer addSublayer:self.replicator];
 
-    self.layer.bounds = CGRectMake(0,0,10.f,10.f);
+    self.layer.bounds = CGRectMake(0,0,5,5);
     self.layer.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1].CGColor;
     self.layer.borderColor = [UIColor colorWithWhite:1 alpha:1].CGColor;
-    self.layer.borderWidth = 1.f;
-    self.layer.cornerRadius = 5.f;
+    self.layer.borderWidth = 0.5;
+    self.layer.cornerRadius = 2.5;
     self.layer.shouldRasterize = YES;
     self.layer.rasterizationScale = [[UIScreen mainScreen] scale];
     [self.replicator addSublayer:self.layer];
@@ -201,9 +201,6 @@ NSString *const kResults = @"Results";
     [star addCurveToPoint:CGPointMake(56.203, 19.882) controlPoint1:CGPointMake(79.591, 38.808) controlPoint2:CGPointMake(92.849, 25.405)];
     [star addCurveToPoint:CGPointMake(23.426, 19.882) controlPoint1:CGPointMake(48.009, 2.664) controlPoint2:CGPointMake(39.814, -14.555)];
     [star closePath];
-
-    CGAffineTransform transform = CGAffineTransformMakeScale(3.0, 3.0);
-    [star applyTransform:transform];
 
     return star.CGPath;
 }
@@ -235,7 +232,7 @@ NSString *const kResults = @"Results";
 // Called when the text field becomes inactive
 - (void)textFieldDidEndEditing:(UITextField *)textField {
 
-    if((int)self.limitTextField.text.length >= 0) self.findButton.enabled = YES;
+    if((NSInteger)self.limitTextField.text.length > 0) self.findButton.enabled = YES;
 }
 
 /* Called each time the user types a character on the keyboard;
@@ -306,6 +303,8 @@ NSString *const kResults = @"Results";
 - (void)done {
 
     [self.limitTextField resignFirstResponder];
+
+    if((NSInteger)self.limitTextField.text.length > 0) self.findButton.enabled = YES;
 }
 
 -(void)startAnimation {

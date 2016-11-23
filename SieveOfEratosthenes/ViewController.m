@@ -12,6 +12,7 @@
 #import "ViewControllerModel.h"
 
 NSInteger const LIMIT_MAX = 1000000;
+NSString *const CELL_IDENTIFIER = @"collectionCell";
 NSString *const FIND_BUTTON = @"FIND";
 NSString *const LIMIT_PLACEHOLDER = @"ENTER LIMIT (BETWEEN 1-1000000)";
 NSString *const TITLE_LABEL = @"Prime Time";
@@ -20,6 +21,7 @@ NSString *const kResults = @"Results";
 
 @interface ViewController ()
 
+@property (nonatomic, strong) NSArray<NSNumber *>*primes;
 @property (nonatomic, strong) CAReplicatorLayer *replicator;
 @property (nonatomic, strong) CALayer *layer;
 @property (nonatomic, assign) Animation animation;
@@ -66,6 +68,10 @@ NSString *const kResults = @"Results";
     self.limitTextField.placeholder = LIMIT_PLACEHOLDER;
     self.limitTextField.keyboardType = UIKeyboardTypeNumberPad;
     self.limitTextField.inputAccessoryView = keyboardToolbar;
+
+    // setup table view
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -82,6 +88,34 @@ NSString *const kResults = @"Results";
 
         [self startAnimation];
     }];
+}
+
+#pragma mark - UICollectionViewDataSource methods
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+
+    return self.primes.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CELL_IDENTIFIER forIndexPath:indexPath];
+
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.bounds.size.width, cell.bounds.size.height)];
+    label.text = [self.primes[indexPath.row] stringValue];
+    label.minimumScaleFactor = 7/[UIFont systemFontSize];
+    label.adjustsFontSizeToFitWidth = YES;
+    label.layer.borderColor = [UIColor whiteColor].CGColor;
+    label.layer.borderWidth = 0;
+    label.layer.cornerRadius = label.bounds.size.height/ 2;
+    label.layer.masksToBounds = YES;
+    label.textAlignment = NSTextAlignmentCenter;
+    label.highlightedTextColor = [UIColor redColor];
+    label.textColor = [UIColor yellowColor];
+    label.backgroundColor = [UIColor greenColor];
+
+    [cell.contentView addSubview:label];
+
+    return cell;
 }
 
 #pragma mark - animation
@@ -246,8 +280,14 @@ NSString *const kResults = @"Results";
         self.findButton.enabled = YES;
 
         // reset animation
-        [self.layer removeAnimationForKey:kCalculate];
-        [self resultsAnimation];
+        //[self.layer removeAnimationForKey:kCalculate];
+        //[self resultsAnimation];
+
+        // setup primes
+        self.primes = [primes copy];
+
+        // reload data
+        [self.collectionView reloadData];
     };
 }
 

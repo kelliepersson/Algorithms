@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 extern NSInteger const LIMIT_MAX;
+extern NSString *const CELL_IDENTIFIER;
 extern NSString *const FIND_BUTTON;
 extern NSString *const LIMIT_PLACEHOLDER;
 extern NSString *const TITLE_LABEL;
@@ -21,11 +22,12 @@ typedef NS_ENUM(NSInteger, Animation)
     Calculate = 0,
     Results
 };
-@interface ViewController : UIViewController<UITextFieldDelegate>
+@interface ViewController : UIViewController<UITextFieldDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak) IBOutlet UITextField *limitTextField;
 @property (nonatomic, weak) IBOutlet UIButton *findButton;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) ViewControllerModel *model;
 
 - (IBAction)findPrimes:(UIButton *)sender;

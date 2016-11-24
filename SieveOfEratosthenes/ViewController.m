@@ -154,23 +154,6 @@ NSString *const kResults = @"Results";
     // set animation
     self.animation = Results;
 
-    UILabel *label = [[UILabel alloc] init];
-    CGRect rect = self.collectionView.frame;
-    CGFloat width = rect.size.width;
-    label.bounds = CGRectMake(rect.origin.x + width/2, rect.origin.x + width/2, width/2, width/2);
-    label.text = [@(self.primes.count) stringValue];
-    label.minimumScaleFactor = 7/[UIFont systemFontSize];
-    label.adjustsFontSizeToFitWidth = YES;
-    label.textAlignment = NSTextAlignmentCenter;
-    label.highlightedTextColor = [UIColor redColor];
-    label.textColor = [UIColor blueColor];
-    label.backgroundColor = [UIColor yellowColor];
-    label.layer.borderColor = [UIColor redColor].CGColor;
-    label.layer.borderWidth = 3;
-    label.layer.cornerRadius = self.collectionView.frame.size.width/4;
-    label.layer.masksToBounds = YES;
-    [self.view.layer addSublayer:label.layer];
-
     CABasicAnimation *move = [CABasicAnimation animationWithKeyPath:@"position.y"];
     move.duration = 0.5;
     move.repeatCount = 1;
@@ -178,6 +161,23 @@ NSString *const kResults = @"Results";
 
     [CATransaction begin]; {
         [CATransaction setCompletionBlock:^{
+
+            UILabel *label = [[UILabel alloc] init];
+            CGRect rect = self.collectionView.frame;
+            CGFloat width = rect.size.width;
+            label.bounds = CGRectMake(rect.origin.x + width/2, rect.origin.x + width/2, width/2, width/2);
+            label.text = [@(self.primes.count) stringValue];
+            label.minimumScaleFactor = 7/[UIFont systemFontSize];
+            label.adjustsFontSizeToFitWidth = YES;
+            label.textAlignment = NSTextAlignmentCenter;
+            label.highlightedTextColor = [UIColor redColor];
+            label.textColor = [UIColor blueColor];
+            label.backgroundColor = [UIColor yellowColor];
+            label.layer.borderColor = [UIColor redColor].CGColor;
+            label.layer.borderWidth = 3;
+            label.layer.cornerRadius = self.collectionView.frame.size.width/4;
+            label.layer.masksToBounds = YES;
+            [self.view.layer addSublayer:label.layer];
 
             [UIView animateWithDuration:3 delay:0.f options:UIViewAnimationOptionTransitionNone animations:^{
 

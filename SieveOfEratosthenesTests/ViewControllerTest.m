@@ -119,6 +119,19 @@
     assertThat([[sut findButton] actionsForTarget:sut forControlEvent:UIControlEventTouchUpInside], contains(@"findPrimes:", nil));
 }
 
+#pragma mark - IBOutlet - collectionView
+-(void)test_collectionView_ShouldBeConnected {
+
+    // then
+    assertThat(sut.collectionView, is(notNilValue()));
+}
+
+-(void)test_collectionView_IsOfCorrectType {
+
+    // then
+    assertThat(@([sut.collectionView isKindOfClass:[UICollectionView class]]), is(@YES));
+}
+
 #pragma mark - validateLimit tests
 -(void)test_ValidateLimitReplacement_ReturnsNO_WhenSingleCharacterIsNonDigit {
 

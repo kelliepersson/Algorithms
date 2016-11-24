@@ -28,7 +28,7 @@ typedef NS_ENUM(NSInteger, Animation)
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak) IBOutlet UITextField *limitTextField;
 @property (nonatomic, weak) IBOutlet UIButton *findButton;
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) ViewControllerModel *model;
 
 - (IBAction)findPrimes:(UIButton *)sender;

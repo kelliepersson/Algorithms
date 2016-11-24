@@ -16,6 +16,7 @@ NSString *const CELL_IDENTIFIER = @"collectionCell";
 NSString *const FIND_BUTTON = @"FIND";
 NSString *const LIMIT_PLACEHOLDER = @"ENTER LIMIT (BETWEEN 1-1000000)";
 NSString *const TITLE_LABEL = @"Prime Time";
+NSString *const TOTAL = @"Total Primes";
 NSString *const kCalculate = @"Calculate";
 NSString *const kResults = @"Results";
 
@@ -106,7 +107,7 @@ NSString *const kResults = @"Results";
     label.layer.masksToBounds = YES;
     label.textAlignment = NSTextAlignmentCenter;
     label.highlightedTextColor = [UIColor redColor];
-    label.textColor = [UIColor yellowColor];
+    label.textColor = [UIColor blueColor];
     label.backgroundColor = [UIColor greenColor];
 
     [cell.contentView addSubview:label];
@@ -154,20 +155,17 @@ NSString *const kResults = @"Results";
     // set animation
     self.animation = Results;
 
-    CABasicAnimation *move = [CABasicAnimation animationWithKeyPath:@"position.y"];
-    move.duration = 0.5;
-    move.repeatCount = 1;
-    move.toValue = @(self.layer.position.y - 35);
-
+    CABasicAnimation *move = [[CABasicAnimation alloc] init];
     [CATransaction begin]; {
         [CATransaction setCompletionBlock:^{
 
             UILabel *label = [[UILabel alloc] init];
             CGRect rect = self.collectionView.frame;
-            CGFloat adjustedWidth = rect.size.width/4;
+            CGFloat adjustedWidth = rect.size.width/3;
             label.bounds = CGRectMake(rect.origin.x + adjustedWidth, rect.origin.x + adjustedWidth, adjustedWidth, adjustedWidth);
-            label.text = [@(self.primes.count) stringValue];
-            label.minimumScaleFactor = 7/[UIFont systemFontSize];
+            label.text = [NSString stringWithFormat:@" %@ \r%@", TOTAL,@(self.primes.count)];
+            label.numberOfLines = 0;
+            label.minimumScaleFactor = 6/[UIFont systemFontSize];
             label.adjustsFontSizeToFitWidth = YES;
             label.textAlignment = NSTextAlignmentCenter;
             label.highlightedTextColor = [UIColor redColor];

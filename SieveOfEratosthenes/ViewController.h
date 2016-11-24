@@ -13,6 +13,7 @@ extern NSString *const CELL_IDENTIFIER;
 extern NSString *const FIND_BUTTON;
 extern NSString *const LIMIT_PLACEHOLDER;
 extern NSString *const TITLE_LABEL;
+extern NSString *const TOTAL;
 extern NSString *const kCalculate;
 extern NSString *const kResults;
 

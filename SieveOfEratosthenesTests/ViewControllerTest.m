@@ -85,7 +85,7 @@
 -(void)test_limitTextField_HasPlaceholder {
 
     // then
-    assertThat(sut.limitTextField.placeholder, is(@"ENTER LIMIT (BETWEEN 1-1000000)"));
+    assertThat(sut.limitTextField.placeholder, is(@"NUMBER (BETWEEN 1-1000000)"));
 }
 
 -(void)test_limitTextField_IsUsingNumberPadKeyboard {

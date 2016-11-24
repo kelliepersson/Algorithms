@@ -14,7 +14,7 @@
 NSInteger const LIMIT_MAX = 1000000;
 NSString *const CELL_IDENTIFIER = @"collectionCell";
 NSString *const FIND_BUTTON = @"FIND";
-NSString *const LIMIT_PLACEHOLDER = @"ENTER LIMIT (BETWEEN 1-1000000)";
+NSString *const LIMIT_PLACEHOLDER = @"NUMBER (BETWEEN 1-1000000)";
 NSString *const TITLE_LABEL = @"Prime Time";
 NSString *const TOTAL = @"Total Primes";
 NSString *const kCalculate = @"Calculate";
@@ -177,17 +177,22 @@ NSString *const kResults = @"Results";
             label.layer.masksToBounds = YES;
             [self.view.layer addSublayer:label.layer];
 
-            [UIView animateWithDuration:3 delay:0.f options:UIViewAnimationOptionTransitionNone animations:^{
+            [UIView animateWithDuration:4 delay:0.f options:UIViewAnimationOptionTransitionNone animations:^{
 
+                // remove previous animation
                 [self.layer removeFromSuperlayer];
-
-                label.center = CGPointMake(self.view.bounds.size.width / 2, self.view.bounds.size.height);
-
-            } completion:^(BOOL finished) {
 
                 // load primes
                 [self.collectionView reloadData];
 
+                label.center = CGPointMake(self.view.bounds.size.width/2, self.view.bounds.size.height + 100);
+
+            } completion:^(BOOL finished) {
+
+                // display findButton
+                self.findButton.hidden = NO;
+
+                // remove current animation
                 [label removeFromSuperview];
             }];
         }];
@@ -235,6 +240,10 @@ NSString *const kResults = @"Results";
     // hide findButton
     self.findButton.hidden = YES;
 
+    // clear grid
+    self.primes = nil;
+    [self.collectionView reloadData];
+
     // set animation
     [self calculateAnimation];
 
@@ -267,9 +276,6 @@ NSString *const kResults = @"Results";
 
 -(didGetPrimesDataBlock)modelDidGetPrimesData {
     return ^(NSArray<NSNumber *>*primes) {
-
-        // display findButton
-        self.findButton.hidden = NO;
 
         // set animation
         [self resultsAnimation];

@@ -44,10 +44,6 @@ NSString *const kResults = @"Results";
     // setup model
     [self bindToModel];
 
-    // setup animation
-    self.replicator = [[CAReplicatorLayer alloc] init];
-    self.layer = [[CALayer alloc] init];
-
     // setup label
     self.titleLabel.text = TITLE_LABEL;
 
@@ -133,14 +129,14 @@ NSString *const kResults = @"Results";
     self.replicator.position = CGPointMake(rPoint.x, rPoint.y + 35.f);
     [self.view.layer addSublayer:self.replicator];
 
+    self.layer = [[CALayer alloc] init];
     self.layer.bounds = CGRectMake(0, 0, 8, 40);
     self.layer.position = CGPointMake(10, 75);
     self.layer.cornerRadius = 2;
     self.layer.backgroundColor = [UIColor redColor].CGColor;
     [self.replicator addSublayer:self.layer];
 
-    CABasicAnimation *move = [[CABasicAnimation alloc] init];
-    move.keyPath = @"position.y";
+    CABasicAnimation *move = [CABasicAnimation animationWithKeyPath:@"position.y"];
     move.toValue = @(self.layer.position.y - 35);
     move.duration = 0.5;
     move.autoreverses = YES;
@@ -158,61 +154,46 @@ NSString *const kResults = @"Results";
     // set animation
     self.animation = Results;
 
-    self.replicator.bounds = CGRectMake(0, 0, 0, 0);
-    CGFloat adjustedHeight = self.replicator.bounds.size.height/2;
-    CGFloat adjustedWidth = self.limitTextField.frame.size.width + 35.f;
-    CGPoint endPoint = CGPointMake(self.limitTextField.frame.origin.x + adjustedWidth , self.limitTextField.frame.origin.y - adjustedHeight);
-    CGPoint rPoint = [self.limitTextField.superview convertPoint:endPoint toView:self.view];
-    self.replicator.position = CGPointMake(rPoint.x, rPoint.y + 35.f);
-    self.replicator.backgroundColor = [UIColor whiteColor].CGColor;
-    [self.view.layer addSublayer:self.replicator];
+    UILabel *label = [[UILabel alloc] initWithFrame:self.collectionView.frame];
+    label.text = [@(self.primes.count) stringValue];
+    label.minimumScaleFactor = 7/[UIFont systemFontSize];
+    label.adjustsFontSizeToFitWidth = YES;
+    label.textAlignment = NSTextAlignmentCenter;
+    label.highlightedTextColor = [UIColor redColor];
+    label.textColor = [UIColor blueColor];
+    label.backgroundColor = [UIColor yellowColor];
+    label.layer.borderColor = [UIColor redColor].CGColor;
+    label.layer.borderWidth = 3;
+    label.layer.cornerRadius = self.collectionView.frame.size.width/2;
+    label.layer.masksToBounds = YES;
+    [self.view.layer addSublayer:label.layer];
 
-    self.layer.bounds = CGRectMake(0,0,5,5);
-    self.layer.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1].CGColor;
-    self.layer.borderColor = [UIColor colorWithWhite:1 alpha:1].CGColor;
-    self.layer.borderWidth = 0.5;
-    self.layer.cornerRadius = 2.5;
-    self.layer.shouldRasterize = YES;
-    self.layer.rasterizationScale = [[UIScreen mainScreen] scale];
-    [self.replicator addSublayer:self.layer];
+    CABasicAnimation *move = [CABasicAnimation animationWithKeyPath:@"position"];
+    move.duration = 0.5;
+    move.repeatCount = 1;
+    move.fromValue = [NSValue valueWithCGPoint:CGPointMake(self.collectionView.center.x - 20.0f, self.collectionView.center.y)];
+    move.toValue = [NSValue valueWithCGPoint:CGPointMake(self.collectionView.center.x + 20.0f, self.collectionView.center.y)];
 
-    CAKeyframeAnimation *move = [[CAKeyframeAnimation alloc] init];
-    move.delegate = self;
-    move.keyPath = @"position";
-    move.path = [self star];
-    move.repeatCount = INFINITY;
-    move.duration = 4.0;
-    [self.layer addAnimation:move forKey:kResults];
+    [CATransaction begin]; {
+        [CATransaction setCompletionBlock:^{
 
-    self.replicator.instanceCount = 20;
-    self.replicator.instanceDelay = 0.1;
-    self.replicator.instanceColor = [UIColor colorWithRed:1 green:0 blue:1 alpha:1].CGColor;
-    self.replicator.instanceBlueOffset = -0.03;
-}
+            [UIView animateWithDuration:1 delay:0.7 options:UIViewAnimationOptionTransitionNone animations:^{
 
--(CGPathRef)star {
+                [self.layer removeAnimationForKey:kCalculate];
 
-    //// Star drawing - generated using BezierCode lite
-    UIBezierPath *star = [UIBezierPath bezierPath];
-    [star moveToPoint:CGPointMake(23.426, 19.882)];
-    [star addCurveToPoint:CGPointMake(13.297, 52.21) controlPoint1:CGPointMake(5.103, 22.644) controlPoint2:CGPointMake(-13.22, 25.405)];
-    [star addCurveToPoint:CGPointMake(39.814, 72.19) controlPoint1:CGPointMake(10.167, 71.136) controlPoint2:CGPointMake(7.037, 90.061)];
-    [star addCurveToPoint:CGPointMake(66.332, 52.21) controlPoint1:CGPointMake(56.203, 81.126) controlPoint2:CGPointMake(72.592, 90.061)];
-    [star addCurveToPoint:CGPointMake(56.203, 19.882) controlPoint1:CGPointMake(79.591, 38.808) controlPoint2:CGPointMake(92.849, 25.405)];
-    [star addCurveToPoint:CGPointMake(23.426, 19.882) controlPoint1:CGPointMake(48.009, 2.664) controlPoint2:CGPointMake(39.814, -14.555)];
-    [star closePath];
+                label.center = CGPointMake(self.view.bounds.size.width / 2, self.view.bounds.size.height);
 
-    return star.CGPath;
-}
+            } completion:^(BOOL finished) {
 
-#pragma mark - CAAnimationDelegate methods
-- (void)animationDidStop:(CAAnimation *)animation finished:(BOOL)flag
-{
-    // remove animations
-    self.animation = None;
+                // load primes
+                [self.collectionView reloadData];
 
-    // load prime grid
-    [self.collectionView reloadData];
+                [label removeFromSuperview];
+            }];
+        }];
+        [self.layer addAnimation:move forKey:kResults];
+        [CATransaction commit];
+    }
 }
 
 #pragma mark - UITextFieldDelegate methods
@@ -301,8 +282,6 @@ NSString *const kResults = @"Results";
 #pragma mark - helper method(s)
 // Called when phone keyboard is invoked from textfield
 - (void)done {
-
-    [self.limitTextField resignFirstResponder];
 
     if((NSInteger)self.limitTextField.text.length > 0) self.findButton.enabled = YES;
 }

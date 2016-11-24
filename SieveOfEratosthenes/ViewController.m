@@ -181,7 +181,7 @@ NSString *const kResults = @"Results";
 
             [UIView animateWithDuration:3 delay:0.f options:UIViewAnimationOptionTransitionNone animations:^{
 
-                [self.layer removeAnimationForKey:kCalculate];
+                [self.layer removeFromSuperlayer];
 
                 label.center = CGPointMake(self.view.bounds.size.width / 2, self.view.bounds.size.height);
 
@@ -285,13 +285,16 @@ NSString *const kResults = @"Results";
 // Called when phone keyboard is invoked from textfield
 - (void)done {
 
+    // close keyboard
+    [self.limitTextField resignFirstResponder];
+
     if((NSInteger)self.limitTextField.text.length > 0) self.findButton.enabled = YES;
 }
 
 -(void)startAnimation {
 
     // remove current running animations
-    [self.layer removeAllAnimations];
+    [self.layer removeFromSuperlayer];
 
     // current animation is calculate
     if(self.animation == Calculate) [self calculateAnimation];

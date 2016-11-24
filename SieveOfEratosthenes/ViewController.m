@@ -231,6 +231,11 @@ NSString *const kResults = @"Results";
 
 // Called when the user presses the clear button
 - (BOOL)textFieldShouldClear:(UITextField *)textField {
+
+    //clear grid
+    self.primes = nil;
+    [self.collectionView reloadData];
+    
     return YES;
 }
 

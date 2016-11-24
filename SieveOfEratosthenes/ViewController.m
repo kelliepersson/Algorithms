@@ -288,6 +288,7 @@ NSString *const kResults = @"Results";
     // close keyboard
     [self.limitTextField resignFirstResponder];
 
+    // (possibly) enable findButton
     if((NSInteger)self.limitTextField.text.length > 0) self.findButton.enabled = YES;
 }
 

@@ -25,7 +25,6 @@ NSString *const kResults = @"Results";
 @property (nonatomic, strong) NSArray<NSNumber *>*primes;
 @property (nonatomic, strong) CAReplicatorLayer *replicator;
 @property (nonatomic, strong) CALayer *layer;
-@property (nonatomic, assign) Animation animation;
 
 @end
 
@@ -76,17 +75,6 @@ NSString *const kResults = @"Results";
     // Dispose of any resources that can be recreated.
 }
 
-// Called whenever device orientation changes.
-- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
-
-    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-
-    [coordinator animateAlongsideTransition:nil completion:^(id<UIViewControllerTransitionCoordinatorContext> context) {
-
-        [self startAnimation];
-    }];
-}
-
 #pragma mark - UICollectionViewDataSource methods
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
 
@@ -117,9 +105,6 @@ NSString *const kResults = @"Results";
 
 #pragma mark - animation
 -(void)calculateAnimation {
-
-    // set animation
-    self.animation = Calculate;
 
     self.replicator = [[CAReplicatorLayer alloc] init];
     self.replicator.bounds = CGRectMake(0, 0, 60, 60);
@@ -152,9 +137,6 @@ NSString *const kResults = @"Results";
 
 -(void)resultsAnimation {
 
-    // set animation
-    self.animation = Results;
-
     CABasicAnimation *move = [[CABasicAnimation alloc] init];
     [CATransaction begin]; {
         [CATransaction setCompletionBlock:^{
@@ -182,6 +164,10 @@ NSString *const kResults = @"Results";
                 // remove previous animation
                 [self.layer removeFromSuperlayer];
 
+                // show disabled findButton
+                self.findButton.hidden = NO;
+                self.findButton.enabled = NO;
+
                 // load primes
                 [self.collectionView reloadData];
 
@@ -189,8 +175,8 @@ NSString *const kResults = @"Results";
 
             } completion:^(BOOL finished) {
 
-                // display findButton
-                self.findButton.hidden = NO;
+                // enable findButton
+                self.findButton.enabled = YES;
 
                 // remove current animation
                 [label removeFromSuperview];
@@ -235,12 +221,33 @@ NSString *const kResults = @"Results";
     //clear grid
     self.primes = nil;
     [self.collectionView reloadData];
-    
+
     return YES;
+}
+
+// Called when the user presses the return key on the keyboard
+ - (BOOL)textFieldShouldReturn:(UITextField *)textField {
+
+    [textField resignFirstResponder];
+
+    return YES;
+}
+
+// Called when phone keyboard is invoked from textfield
+- (void)done {
+
+    // close keyboard
+    [self.limitTextField resignFirstResponder];
+
+    // (possibly) enable findButton
+    if((NSInteger)self.limitTextField.text.length > 0) self.findButton.enabled = YES;
 }
 
 #pragma mark - action methods
 - (IBAction)findPrimes:(UIButton *)sender {
+
+    // close keyboard (if necessary)
+    if([self.limitTextField isFirstResponder]) [self.limitTextField resignFirstResponder];
 
     // hide findButton
     self.findButton.hidden = YES;
@@ -288,29 +295,6 @@ NSString *const kResults = @"Results";
         // setup primes
         self.primes = [primes copy];
     };
-}
-
-#pragma mark - helper method(s)
-// Called when phone keyboard is invoked from textfield
-- (void)done {
-
-    // close keyboard
-    [self.limitTextField resignFirstResponder];
-
-    // (possibly) enable findButton
-    if((NSInteger)self.limitTextField.text.length > 0) self.findButton.enabled = YES;
-}
-
--(void)startAnimation {
-
-    // remove current running animations
-    [self.layer removeFromSuperlayer];
-
-    // current animation is calculate
-    if(self.animation == Calculate) [self calculateAnimation];
-
-    // current animation is results
-    else if (self.animation == Results) [self resultsAnimation];
 }
 
 @end

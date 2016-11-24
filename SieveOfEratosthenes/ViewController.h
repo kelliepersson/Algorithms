@@ -18,12 +18,6 @@ extern NSString *const kCalculate;
 extern NSString *const kResults;
 
 @class ViewControllerModel;
-typedef NS_ENUM(NSInteger, Animation)
-{
-    None = 0,
-    Calculate,
-    Results
-};
 @interface ViewController : UIViewController<UITextFieldDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;

@@ -164,8 +164,8 @@ NSString *const kResults = @"Results";
 
             UILabel *label = [[UILabel alloc] init];
             CGRect rect = self.collectionView.frame;
-            CGFloat width = rect.size.width;
-            label.bounds = CGRectMake(rect.origin.x + width/2, rect.origin.x + width/2, width/2, width/2);
+            CGFloat adjustedWidth = rect.size.width/4;
+            label.bounds = CGRectMake(rect.origin.x + adjustedWidth, rect.origin.x + adjustedWidth, adjustedWidth, adjustedWidth);
             label.text = [@(self.primes.count) stringValue];
             label.minimumScaleFactor = 7/[UIFont systemFontSize];
             label.adjustsFontSizeToFitWidth = YES;
@@ -175,7 +175,7 @@ NSString *const kResults = @"Results";
             label.backgroundColor = [UIColor yellowColor];
             label.layer.borderColor = [UIColor redColor].CGColor;
             label.layer.borderWidth = 3;
-            label.layer.cornerRadius = self.collectionView.frame.size.width/4;
+            label.layer.cornerRadius = adjustedWidth/2;
             label.layer.masksToBounds = YES;
             [self.view.layer addSublayer:label.layer];
 

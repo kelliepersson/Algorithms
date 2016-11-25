@@ -23,7 +23,6 @@ NSString *const kResults = @"Results";
 @interface ViewController ()
 
 @property (nonatomic, strong) NSArray<NSNumber *>*primes;
-@property (nonatomic, strong) CAReplicatorLayer *replicator;
 @property (nonatomic, strong) CALayer *layer;
 
 @end
@@ -68,6 +67,9 @@ NSString *const kResults = @"Results";
     // setup table view
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
+
+    // setup animation
+    self.layer = [[CALayer alloc] init];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -106,21 +108,20 @@ NSString *const kResults = @"Results";
 #pragma mark - animation
 -(void)calculateAnimation {
 
-    self.replicator = [[CAReplicatorLayer alloc] init];
-    self.replicator.bounds = CGRectMake(0, 0, 60, 60);
-    CGFloat adjustedHeight = self.replicator.bounds.size.height/2;
+    CAReplicatorLayer *replicator = [[CAReplicatorLayer alloc] init];
+    replicator.bounds = CGRectMake(0, 0, 60, 60);
+    CGFloat adjustedHeight = replicator.bounds.size.height/2;
     CGFloat adjustedWidth = self.limitTextField.frame.size.width + 35.f;
     CGPoint endPoint = CGPointMake(self.limitTextField.frame.origin.x + adjustedWidth, self.limitTextField.frame.origin.y - adjustedHeight);
     CGPoint rPoint = [self.limitTextField.superview convertPoint:endPoint toView:self.view];
-    self.replicator.position = CGPointMake(rPoint.x, rPoint.y + 35.f);
-    [self.view.layer addSublayer:self.replicator];
+    replicator.position = CGPointMake(rPoint.x, rPoint.y + 35.f);
+    [self.view.layer addSublayer:replicator];
 
-    self.layer = [[CALayer alloc] init];
     self.layer.bounds = CGRectMake(0, 0, 8, 40);
     self.layer.position = CGPointMake(10, 75);
     self.layer.cornerRadius = 2;
     self.layer.backgroundColor = [UIColor redColor].CGColor;
-    [self.replicator addSublayer:self.layer];
+    [replicator addSublayer:self.layer];
 
     CABasicAnimation *move = [CABasicAnimation animationWithKeyPath:@"position.y"];
     move.toValue = @(self.layer.position.y - 35);
@@ -129,10 +130,10 @@ NSString *const kResults = @"Results";
     move.repeatCount = INFINITY;
     [self.layer addAnimation:move forKey:kCalculate];
 
-    self.replicator.instanceCount = 3;
-    self.replicator.instanceTransform = CATransform3DMakeTranslation(20, 0, 0);
-    self.replicator.instanceDelay = 0.33;
-    self.replicator.masksToBounds = YES;
+    replicator.instanceCount = 3;
+    replicator.instanceTransform = CATransform3DMakeTranslation(20, 0, 0);
+    replicator.instanceDelay = 0.33;
+    replicator.masksToBounds = YES;
 }
 
 -(void)resultsAnimation {

@@ -108,10 +108,10 @@
 - (void)test_EulerSievePerformance {
     // This is an example of a performance test case.
 
-    Prime *prime = [[Prime alloc] initWithLimit:100000];
+    sut = [[Prime alloc] initWithLimit:100000];
     [self measureBlock:^{
 
-        [prime sieve2];
+        [sut sieve2];
     }];
 }
 

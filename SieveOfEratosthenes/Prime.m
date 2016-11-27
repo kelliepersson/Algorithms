@@ -38,7 +38,7 @@
     [numbers addObject:@2];  // setup first prime
 
     int i = 3;
-    while (i <=self.limit) {  // only even numbers
+    while (i <=self.limit) {  // only odd numbers
         [numbers addObject:@(i)];
          i += 2;
     }
@@ -53,15 +53,12 @@
         if(prime * prime > self.limit) break; // numbers below p^2 are all primes so if p^2 > x, we're done
 
         // remove number from set if it is a multiple
-        NSUInteger number = [numbers[0] unsignedIntegerValue];
         for (NSInteger i = numbers.count - 1; i >= 0; i--) {
 
             NSUInteger product = [numbers[i] unsignedIntegerValue];
             if (!(product % prime))
                 [numbers removeObjectAtIndex:i];
         }
-
-        if(number * number > self.limit) break; // numbers below n^2 are all primes so if n^2 > x, we're done
     }
 
     [primes addObjectsFromArray:numbers];
